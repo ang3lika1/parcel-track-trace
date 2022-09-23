@@ -1,11 +1,11 @@
-package at.fhtw.swen3.services;
+package at.fhtw.swen3.services.impl;
 
 import at.fhtw.swen3.persistence.Error;
-import at.fhtw.swen3.persistence.NewParcelInfo;
-import at.fhtw.swen3.persistence.Parcel;
-import at.fhtw.swen3.persistence.TrackingInformation;
+import at.fhtw.swen3.persistence.Hop;
+import at.fhtw.swen3.persistence.Warehouse;
 
 
+import at.fhtw.swen3.services.WarehouseApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,12 +31,12 @@ import javax.annotation.Generated;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
 @Controller
-public class ParcelApiController implements ParcelApi {
+public class WarehouseApiController implements WarehouseApi {
 
     private final NativeWebRequest request;
 
     @Autowired
-    public ParcelApiController(NativeWebRequest request) {
+    public WarehouseApiController(NativeWebRequest request) {
         this.request = request;
     }
 
