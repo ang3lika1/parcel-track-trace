@@ -1,22 +1,18 @@
-package at.fhtw.swen3.persistence;
+package at.fhtw.swen3.services.dto;
 
-import java.net.URI;
 import java.util.Objects;
-import at.fhtw.swen3.persistence.HopArrival;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.List;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-import java.util.*;
 import javax.annotation.Generated;
 
 /**
@@ -25,7 +21,7 @@ import javax.annotation.Generated;
 
 @JsonTypeName("trackingInformation")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
-public class TrackingInformation {
+public class TrackingInformationDto {
 
   /**
    * State of the parcel.
@@ -79,7 +75,7 @@ public class TrackingInformation {
   @Valid
   private List<HopArrival> futureHops = new ArrayList<>();
 
-  public TrackingInformation state(StateEnum state) {
+  public TrackingInformationDto state(StateEnum state) {
     this.state = state;
     return this;
   }
@@ -98,12 +94,12 @@ public class TrackingInformation {
     this.state = state;
   }
 
-  public TrackingInformation visitedHops(List<HopArrival> visitedHops) {
+  public TrackingInformationDto visitedHops(List<HopArrival> visitedHops) {
     this.visitedHops = visitedHops;
     return this;
   }
 
-  public TrackingInformation addVisitedHopsItem(HopArrival visitedHopsItem) {
+  public TrackingInformationDto addVisitedHopsItem(HopArrival visitedHopsItem) {
     this.visitedHops.add(visitedHopsItem);
     return this;
   }
@@ -122,12 +118,12 @@ public class TrackingInformation {
     this.visitedHops = visitedHops;
   }
 
-  public TrackingInformation futureHops(List<HopArrival> futureHops) {
+  public TrackingInformationDto futureHops(List<HopArrival> futureHops) {
     this.futureHops = futureHops;
     return this;
   }
 
-  public TrackingInformation addFutureHopsItem(HopArrival futureHopsItem) {
+  public TrackingInformationDto addFutureHopsItem(HopArrival futureHopsItem) {
     this.futureHops.add(futureHopsItem);
     return this;
   }
@@ -154,7 +150,7 @@ public class TrackingInformation {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TrackingInformation trackingInformation = (TrackingInformation) o;
+    TrackingInformationDto trackingInformation = (TrackingInformationDto) o;
     return Objects.equals(this.state, trackingInformation.state) &&
         Objects.equals(this.visitedHops, trackingInformation.visitedHops) &&
         Objects.equals(this.futureHops, trackingInformation.futureHops);

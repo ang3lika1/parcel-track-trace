@@ -1,18 +1,13 @@
-package at.fhtw.swen3.persistence;
+package at.fhtw.swen3.services.dto;
 
-import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
-import javax.validation.Valid;
+
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-import java.util.*;
 import javax.annotation.Generated;
 
 /**
@@ -21,12 +16,12 @@ import javax.annotation.Generated;
 
 @JsonTypeName("newParcelInfo")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
-public class NewParcelInfo {
+public class NewParcelInfoDto {
 
   @JsonProperty("trackingId")
   private String trackingId;
 
-  public NewParcelInfo trackingId(String trackingId) {
+  public NewParcelInfoDto trackingId(String trackingId) {
     this.trackingId = trackingId;
     return this;
   }
@@ -53,7 +48,7 @@ public class NewParcelInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NewParcelInfo newParcelInfo = (NewParcelInfo) o;
+    NewParcelInfoDto newParcelInfo = (NewParcelInfoDto) o;
     return Objects.equals(this.trackingId, newParcelInfo.trackingId);
   }
 
