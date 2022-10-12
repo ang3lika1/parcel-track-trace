@@ -9,6 +9,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,7 @@ public class ParcelEntity {
     @Column
     private Long id;
     @Column
+    @DecimalMin(value = "0.1", message = "parcel weight must be over 0.0")
     private Float weight;
     @OneToOne
     @JoinColumn(name="fk_recipient")

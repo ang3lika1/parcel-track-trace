@@ -14,8 +14,8 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-05T22:16:59+0200",
-    comments = "version: 1.5.2.Final, compiler: javac, environment: Java 19 (Oracle Corporation)"
+    date = "2022-10-11T09:57:50+0200",
+    comments = "version: 1.5.2.Final, compiler: javac, environment: Java 18.0.1.1 (Oracle Corporation)"
 )
 public class ParcelMapperImpl implements ParcelMapper {
 
@@ -49,15 +49,15 @@ public class ParcelMapperImpl implements ParcelMapper {
             return null;
         }
 
-        RecipientEntity recipientEntity = new RecipientEntity();
+        RecipientEntity.RecipientEntityBuilder recipientEntity = RecipientEntity.builder();
 
-        recipientEntity.setName( recipientDto.getName() );
-        recipientEntity.setStreet( recipientDto.getStreet() );
-        recipientEntity.setPostalCode( recipientDto.getPostalCode() );
-        recipientEntity.setCity( recipientDto.getCity() );
-        recipientEntity.setCountry( recipientDto.getCountry() );
+        recipientEntity.name( recipientDto.getName() );
+        recipientEntity.street( recipientDto.getStreet() );
+        recipientEntity.postalCode( recipientDto.getPostalCode() );
+        recipientEntity.city( recipientDto.getCity() );
+        recipientEntity.country( recipientDto.getCountry() );
 
-        return recipientEntity;
+        return recipientEntity.build();
     }
 
     protected HopArrivalEntity hopArrivalToHopArrivalEntity(HopArrival hopArrival) {

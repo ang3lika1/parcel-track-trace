@@ -1,18 +1,36 @@
 package at.fhtw.swen3.persistence.entity;
 
-import javax.validation.Validation;
-import javax.validation.ValidatorFactory;
+import lombok.extern.slf4j.Slf4j;
 
-public class Validator {
-    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-    Validator validator = factory.getValidator();
-    RecipientEntity user = RecipientEntity.builder()
-            .working(true)
-            .aboutMe("Its all about me!")
-            .age(50)
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import java.util.Set;
+
+@Slf4j
+public class EntityValidator {
+    Validator validator;
+    Set<ConstraintViolation<RecipientEntity>> violations;
+    public Validator getValidator(){
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        this.validator = factory.getValidator();
+        return validator;
+    }
+    RecipientEntity recipient = RecipientEntity.builder()
+            .name("test name")
+            //.street("Hauptstraße 12/12/12")
+            .street("Landstraße 27a")
+            .postalCode("A-3830")
+            .city("Waidhofen an der Thaya")
+            .country("Austria")
             .build();
-    Set<ConstraintViolation<RecipientEntity>> violations = validator.validate(user);
-    for (ConstraintViolation<RecipientEntity> violation : violations) {
-        log.error(violation.getMessage());
+    public void validate(Validator validator) {
+        this.violations = validator.validate(recipient);
+    }
+    public void showMessages() {
+        for (ConstraintViolation<RecipientEntity> violation : violations) {
+           log.error(violation.getMessage());
+        }
     }
 }
