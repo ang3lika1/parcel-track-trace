@@ -5,17 +5,15 @@
  */
 package at.fhtw.swen3.services;
 
-import at.fhtw.swen3.persistence.Error;
-import at.fhtw.swen3.persistence.NewParcelInfo;
-import at.fhtw.swen3.persistence.Parcel;
-import at.fhtw.swen3.persistence.TrackingInformation;
+import at.fhtw.swen3.services.dto.Error;
+import at.fhtw.swen3.services.dto.NewParcelInfoDto;
+import at.fhtw.swen3.services.dto.ParcelDto;
+import at.fhtw.swen3.services.dto.TrackingInformationDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,12 +21,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
@@ -124,7 +119,7 @@ public interface ParcelApi {
         tags = { "sender" },
         responses = {
             @ApiResponse(responseCode = "201", description = "Successfully submitted the new parcel", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = NewParcelInfo.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = NewParcelInfoDto.class))
             }),
             @ApiResponse(responseCode = "400", description = "The operation failed due to an error.", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
@@ -140,8 +135,8 @@ public interface ParcelApi {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<NewParcelInfo> submitParcel(
-        @Parameter(name = "Parcel", description = "", required = true) @Valid @RequestBody Parcel parcel
+    default ResponseEntity<NewParcelInfoDto> submitParcel(
+        @Parameter(name = "Parcel", description = "", required = true) @Valid @RequestBody ParcelDto parcel
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
@@ -171,7 +166,7 @@ public interface ParcelApi {
         tags = { "recipient" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Parcel exists, here's the tracking information.", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = TrackingInformation.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = TrackingInformationDto.class))
             }),
             @ApiResponse(responseCode = "400", description = "The operation failed due to an error.", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
@@ -184,7 +179,7 @@ public interface ParcelApi {
         value = "/parcel/{trackingId}",
         produces = { "application/json" }
     )
-    default ResponseEntity<TrackingInformation> trackParcel(
+    default ResponseEntity<TrackingInformationDto> trackParcel(
         @Pattern(regexp = "^[A-Z0-9]{9}$") @Parameter(name = "trackingId", description = "The tracking ID of the parcel. E.g. PYJRB4HZ6 ", required = true) @PathVariable("trackingId") String trackingId
     ) {
         getRequest().ifPresent(request -> {
@@ -216,7 +211,7 @@ public interface ParcelApi {
         tags = { "logisticsPartner" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Successfully transitioned the parcel", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = NewParcelInfo.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = NewParcelInfoDto.class))
             }),
             @ApiResponse(responseCode = "400", description = "The operation failed due to an error.", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
@@ -230,9 +225,9 @@ public interface ParcelApi {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<NewParcelInfo> transitionParcel(
+    default ResponseEntity<NewParcelInfoDto> transitionParcel(
         @Pattern(regexp = "^[A-Z0-9]{9}$") @Parameter(name = "trackingId", description = "The tracking ID of the parcel. E.g. PYJRB4HZ6 ", required = true) @PathVariable("trackingId") String trackingId,
-        @Parameter(name = "Parcel", description = "", required = true) @Valid @RequestBody Parcel parcel
+        @Parameter(name = "Parcel", description = "", required = true) @Valid @RequestBody ParcelDto parcel
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
