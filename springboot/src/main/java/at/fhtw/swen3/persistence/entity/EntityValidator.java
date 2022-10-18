@@ -23,11 +23,8 @@ public class EntityValidator {
     <T> void validate(T o) {
         Validator validator = getValidator();
         Set<ConstraintViolation<T>> violations = validator.validate(o);
-
+        violations.forEach(v -> log.error(v.getMessage()));
         if (!violations.isEmpty()) {
-            for (ConstraintViolation<T> violation : violations) {
-                log.error(violation.getMessage());
-            }
             throw new ConstraintViolationException(violations);
         }
     }
