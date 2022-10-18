@@ -19,11 +19,6 @@ public class OpenApiGeneratorApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(OpenApiGeneratorApplication.class, args);
-
-        EntityValidator entityValidator = new EntityValidator();
-        Validator validator = entityValidator.getValidator();
-        entityValidator.validate(validator);
-        entityValidator.showMessages();
     }
 
     @Bean

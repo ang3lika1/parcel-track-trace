@@ -1,15 +1,38 @@
 package at.fhtw.swen3.persistence.entity;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
+
+import javax.validation.*;
 import java.util.Set;
 
 @Slf4j
+@Component
 public class EntityValidator {
+
+    static ValidatorFactory getValidatorFactory() {
+        return Validation.buildDefaultValidatorFactory();
+    }
+
+
+    Validator getValidator() {
+        return getValidatorFactory().getValidator();
+    }
+
+    <T> void validate(T o) {
+        Validator validator = getValidator();
+        Set<ConstraintViolation<T>> violations = validator.validate(o);
+
+        if (!violations.isEmpty()) {
+            for (ConstraintViolation<T> violation : violations) {
+                log.error(violation.getMessage());
+            }
+            throw new ConstraintViolationException(violations);
+        }
+    }
+}
+/*public class EntityValidator {
     Validator validator;
     Set<ConstraintViolation<RecipientEntity>> violations;
     public Validator getValidator(){
@@ -36,4 +59,4 @@ public class EntityValidator {
            log.error(violation.getMessage());
         }
     }
-}
+}*/

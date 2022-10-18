@@ -11,4 +11,11 @@ import org.mapstruct.Mapping;
 public interface ParcelMapper{
     @Mapping(source = "trackingInformation.state", target = "deliveryStatus")
     ParcelEntity from(ParcelDto parcel, NewParcelInfoDto newParcelInfo, TrackingInformationDto trackingInformation);
+
+    ParcelDto toParcelDto(ParcelEntity entity);
+
+    NewParcelInfoDto toParcelInfoDto(ParcelEntity entity);
+
+    @Mapping(source = "entity.deliveryStatus", target = "state")
+    TrackingInformationDto toTrackingInfoDto(ParcelEntity entity);
 }
