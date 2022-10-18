@@ -13,21 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy
     
-    steps:
-      #- name: Download JAR
-      #  # Download the artifact which was uploaded in the build's job
-      #  uses: actions/download-artifact@v2
-      #  with:
-      #    name: parcel_trackn_trace_jar
-          
-      - name: Download artifact
-        id: download-artifact
+    steps:       
+      - name: Download JAR
+      
         uses: dawidd6/action-download-artifact@v2
         with:
           # Optional, workflow file name or ID
           # If not specified, will be inferred from run_id (if run_id is specified), or will be the current workflow
           workflow: build.yml
-
           # Optional, uploaded artifact name,
           # will download all artifacts if not specified
           # and extract them into respective subdirectories
@@ -59,7 +52,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_session_token: ${{ secrets.AWS_SESSION_TOKEN }}
           use_existing_version_if_available: false
-          application_name: parcel-trackn-trace
+          application_name: Parcel Track'n Trace
           environment_name: Parceltrackntrace-env
           version_label: ${{github.SHA}}
           region: us-east-1
