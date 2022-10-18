@@ -1,0 +1,36 @@
+name: CD
+
+on:
+ workflow_run:
+    workflows: ["Master CI"]
+    branches: [main]
+    types: 
+      - completed
+
+# Deploy's Job
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    
+    steps:
+      - name: Download JAR
+        # Download the artifact which was uploaded in the build's job
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact
+      # Deploy the artifact (JAR) into AWS Beanstalk
+      - name: Deploy to EB
+        uses: ang3lika1/beanstalk-deploy@v13
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_session_token: ${{ secrets.AWS_SESSION_TOKEN }}
+          use_existing_version_if_available: false
+          application_name: spring-boot-deploy
+          environment_name: Springbootdeploy-env
+          version_label: ${{github.SHA}}
+          region: us-east-1
+          deployment_package: data-0.0.1-SNAPSHOT.jar
+    
+    
