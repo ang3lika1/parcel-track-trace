@@ -27,9 +27,6 @@ class ParcelApiControllerTest {
 
     @Test
     void submitParcel() {
-        /*ParcelEntity parcelEntity= bookMapper.mapToSource(book);
-        log.info(entity.toString());*/
-        submitParcel();
     }
 
     @Test

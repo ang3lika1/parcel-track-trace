@@ -5,7 +5,10 @@ import at.fhtw.swen3.services.dto.HopArrival;
 import at.fhtw.swen3.services.dto.RecipientDto;
 import at.fhtw.swen3.services.dto.TrackingInformationDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -18,8 +21,10 @@ import java.util.List;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ParcelEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
