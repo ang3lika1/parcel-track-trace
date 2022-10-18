@@ -11,6 +11,8 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,16 +29,20 @@ public class ParcelEntity {
     private Float weight;
     @OneToOne
     @JoinColumn(name="fk_recipient")
+    @NotNull
     private RecipientEntity recipient;
     @OneToOne
     @JoinColumn(name="fk_sender")
     private RecipientEntity sender;
     @Column
+    @Pattern(regexp = "^[A-Z0-9]{9}$", message = "must match regex (9 digits: upper case and numbers)")
     private String trackingId;
     @Column
     private TrackingInformationDto.StateEnum deliveryStatus;
     @OneToMany
+    @NotNull
     private List<HopArrivalEntity> visitedHops;
     @OneToMany
+    @NotNull
     private List<HopArrivalEntity> futureHops;
 }

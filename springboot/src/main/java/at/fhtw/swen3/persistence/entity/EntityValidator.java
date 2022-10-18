@@ -17,10 +17,13 @@ public class EntityValidator {
         this.validator = factory.getValidator();
         return validator;
     }
+
+
     RecipientEntity recipient = RecipientEntity.builder()
             .name("test name")
             //.street("Hauptstraße 12/12/12")
-            .street("Landstraße 27a")
+            //.street("Landstraße 27a")
+            .street("Arnold Fink Str. 13")
             .postalCode("A-3830")
             .city("Waidhofen an der Thaya")
             .country("Austria")
