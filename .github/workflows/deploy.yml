@@ -26,7 +26,7 @@ jobs:
         with:
           # Optional, workflow file name or ID
           # If not specified, will be inferred from run_id (if run_id is specified), or will be the current workflow
-          workflow: workflow_name.yml
+          workflow: build.yml
 
           # Optional, uploaded artifact name,
           # will download all artifacts if not specified
