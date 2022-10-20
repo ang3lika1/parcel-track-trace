@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "warehouse_next_hops")
+@Table(name = "warehouse_next_hop")
 public class WarehouseNextHopEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
