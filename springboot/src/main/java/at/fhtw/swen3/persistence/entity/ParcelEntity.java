@@ -28,7 +28,6 @@ public class ParcelEntity {
     private Float weight;
     @OneToOne
     @JoinColumn(name="fk_recipient")
-    @NotNull
     private RecipientEntity recipient;
     @OneToOne
     @JoinColumn(name="fk_sender")
