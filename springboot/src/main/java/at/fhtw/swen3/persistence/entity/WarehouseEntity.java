@@ -1,4 +1,4 @@
-package at.fhtw.swen3.model.entities;
+package at.fhtw.swen3.persistence.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Warehouse {
+public class WarehouseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -23,5 +23,5 @@ public class Warehouse {
     private Integer level;
 
     @OneToMany
-    private List<WarehouseNextHops> nextHops = new ArrayList<>();
+    private List<WarehouseNextHopsEntity> nextHops = new ArrayList<>();
 }

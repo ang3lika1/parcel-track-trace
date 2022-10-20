@@ -1,9 +1,9 @@
 package at.fhtw.swen3.services.mapper;
 
+import at.fhtw.swen3.services.dto.HopArrivalDto;
 import at.fhtw.swen3.persistence.entity.HopArrivalEntity;
 import at.fhtw.swen3.persistence.entity.ParcelEntity;
 import at.fhtw.swen3.persistence.entity.RecipientEntity;
-import at.fhtw.swen3.services.dto.HopArrival;
 import at.fhtw.swen3.services.dto.NewParcelInfoDto;
 import at.fhtw.swen3.services.dto.ParcelDto;
 import at.fhtw.swen3.services.dto.TrackingInformationDto;
@@ -23,8 +23,8 @@ class ParcelMapperTest {
     private final List<HopArrivalEntity> futuredHops = Arrays.asList(hopArrival, hopArrival, hopArrival);
 
     //for Test "toTrackingInfoDto", because visitedHops and futureHops are List of HopArrivals after mapping (not List of HopArrivalEntity)
-    private @Mock HopArrival hopArrivalafterMapping;
-    private final List<HopArrival> hopArrivals = Arrays.asList(hopArrivalafterMapping, hopArrivalafterMapping, hopArrivalafterMapping);
+    private @Mock HopArrivalDto hopArrivalafterMapping;
+    private final List<HopArrivalDto> hopArrivals = Arrays.asList(hopArrivalafterMapping, hopArrivalafterMapping, hopArrivalafterMapping);
 
     protected void setUp() throws Exception {
     }

@@ -1,4 +1,4 @@
-package at.fhtw.swen3.model.entities;
+package at.fhtw.swen3.persistence.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class GeoCoordinate {
+public class GeoCoordinateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

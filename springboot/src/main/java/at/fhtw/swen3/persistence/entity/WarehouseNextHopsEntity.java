@@ -1,5 +1,6 @@
-package at.fhtw.swen3.model.entities;
+package at.fhtw.swen3.persistence.entity;
 
+import at.fhtw.swen3.persistence.entity.HopEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class WarehouseNextHops {
+public class WarehouseNextHopsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
@@ -20,6 +21,6 @@ public class WarehouseNextHops {
     @Column
     private Integer traveltimeMins;
     @OneToOne
-    private Hop hop;
+    private HopEntity hopEntity;
 
 }
