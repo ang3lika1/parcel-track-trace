@@ -27,10 +27,10 @@ public class Parcel {
     private Float weight;
     @OneToOne
     @JoinColumn(name="fk_recipient")
-    private RecipientEntity recipient;
+    private Recipient recipient;
     @OneToOne
     @JoinColumn(name="fk_sender")
-    private RecipientEntity sender;
+    private Recipient sender;
     @Column
     private String trackingId;
     @Column
