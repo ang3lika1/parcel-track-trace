@@ -1,7 +1,6 @@
 package at.fhtw.swen3.persistence.entity;
 
 import at.fhtw.swen3.services.dto.TrackingInformationDto;
-import org.apache.commons.lang3.ObjectUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -10,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.validation.ConstraintViolationException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 

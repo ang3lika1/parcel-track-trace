@@ -1,22 +1,16 @@
 package at.fhtw.swen3.persistence.entity;
 
 
-import at.fhtw.swen3.services.dto.HopArrival;
-import at.fhtw.swen3.services.dto.RecipientDto;
 import at.fhtw.swen3.services.dto.TrackingInformationDto;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
