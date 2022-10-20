@@ -12,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "geo_coordinate")
 public class GeoCoordinateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

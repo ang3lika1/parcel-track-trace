@@ -12,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "truck")
 public class TruckEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

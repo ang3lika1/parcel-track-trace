@@ -14,6 +14,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "warehouse")
 public class WarehouseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,5 +24,5 @@ public class WarehouseEntity {
     private Integer level;
 
     @OneToMany
-    private List<WarehouseNextHopsEntity> nextHops = new ArrayList<>();
+    private List<WarehouseNextHopEntity> nextHops = new ArrayList<>();
 }
