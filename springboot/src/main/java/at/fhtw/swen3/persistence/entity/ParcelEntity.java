@@ -18,6 +18,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "parcel")
 public class ParcelEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +29,6 @@ public class ParcelEntity {
     private Float weight;
     @OneToOne
     @JoinColumn(name="fk_recipient")
-    @NotNull
     private RecipientEntity recipient;
     @OneToOne
     @JoinColumn(name="fk_sender")
