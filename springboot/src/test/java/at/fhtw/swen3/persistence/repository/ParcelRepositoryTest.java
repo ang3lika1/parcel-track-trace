@@ -1,10 +1,8 @@
-package at.fhtw.swen3.model.entities;
+package at.fhtw.swen3.persistence.repository;
 
 import at.fhtw.swen3.persistence.entity.HopArrivalEntity;
 import at.fhtw.swen3.persistence.entity.ParcelEntity;
 import at.fhtw.swen3.persistence.entity.RecipientEntity;
-import at.fhtw.swen3.persistence.repository.ParcelRepository;
-import at.fhtw.swen3.persistence.repository.RecipientRepository;
 import at.fhtw.swen3.services.dto.TrackingInformationDto;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -16,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
-public class ParcelTest {
+public class ParcelRepositoryTest {
 
     @Autowired
     private ParcelRepository parcelRepository;

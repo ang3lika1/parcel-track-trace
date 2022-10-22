@@ -23,6 +23,6 @@ public class WarehouseEntity {
     @Column
     private Integer level;
 
-    @OneToMany
+    @OneToMany(mappedBy = "warehouse")
     private List<WarehouseNextHopEntity> nextHops = new ArrayList<>();
 }
