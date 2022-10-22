@@ -22,7 +22,7 @@ class HopRepositoryTest {
     private HopRepository hopRepository;
 
     @Autowired
-    private TestEntityManager entityManager;
+    private TestEntityManager entityManager; //intellij error?
 
 
     @Test
