@@ -20,7 +20,7 @@ public class WarehouseNextHopEntity {
     private Long id;
     @Column
     private Integer traveltimeMins;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private HopEntity hop;
     @ManyToOne
     @JoinColumn(name="fk_warehouse")
