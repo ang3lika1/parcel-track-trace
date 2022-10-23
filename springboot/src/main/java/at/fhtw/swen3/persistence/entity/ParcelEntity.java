@@ -27,10 +27,10 @@ public class ParcelEntity {
     @Column
     @DecimalMin(value = "0.1", message = "parcel weight must be over 0.0")
     private Float weight;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="fk_recipient")
     private RecipientEntity recipient;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="fk_sender")
     private RecipientEntity sender;
     @Column

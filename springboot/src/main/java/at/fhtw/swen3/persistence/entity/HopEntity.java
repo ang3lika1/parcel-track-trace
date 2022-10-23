@@ -35,6 +35,6 @@ public class HopEntity {
     @Column
     private String locationName;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private GeoCoordinateEntity locationCoordinates;
 }
