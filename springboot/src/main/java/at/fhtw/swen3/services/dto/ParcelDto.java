@@ -23,6 +23,7 @@ import javax.annotation.Generated;
 public class ParcelDto {
 
   @JsonProperty("weight")
+  @DecimalMin(value = "0.1", message = "parcel weight must be over 0.0")
   private Float weight;
 
   @JsonProperty("recipient")
