@@ -20,16 +20,18 @@ class ParcelServiceImplTest {
 
     private @Mock
     ParcelDto parcelDto;
+    @Autowired
+    private ParcelService parcelService;
 
     @Test
     void saveNewParcel() {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
+        //AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
         //ctx.register(SpringConfig.class);
         //ctx.refresh();
 
-        ParcelService parcelService = ctx.getBean(ParcelService.class);
+        //ParcelService parcelService = ctx.getBean(ParcelService.class);
         parcelService.saveNewParcel(parcelDto);
 
-        ctx.close();
+        //ctx.close();
     }
 }

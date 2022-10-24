@@ -7,21 +7,8 @@ import at.fhtw.swen3.services.ParcelServiceImpl;
 import at.fhtw.swen3.services.Validator;
 import at.fhtw.swen3.services.mapper.ParcelMapper;
 import at.fhtw.swen3.services.mapper.ParcelMapperImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-import javax.validation.Valid;
-import java.util.Objects;
 
 @Configuration
 //@EnableJpaRepositories(basePackages="at.fhtw.swen3.persistence.repository", entityManagerFactoryRef="entityManagerFactory")

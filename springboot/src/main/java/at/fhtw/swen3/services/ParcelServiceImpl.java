@@ -21,17 +21,16 @@ public class ParcelServiceImpl implements ParcelService{
 
     @Override
     public ParcelDto saveNewParcel(ParcelDto parcel) {
-        validator.validate(parcel);
+        //validator.validate(parcel);
         // TODO: create trackingID
 
-        NewParcelInfoDto newParcelInfoDto = NewParcelInfoDto.builder().build();
-        TrackingInformationDto trackingInformationDto = TrackingInformationDto.builder().build();
+        //NewParcelInfoDto newParcelInfoDto = NewParcelInfoDto.builder().build();
+        //TrackingInformationDto trackingInformationDto = TrackingInformationDto.builder().build();
 
-        ParcelEntity parcelEntity = parcelMapper.from(parcel, newParcelInfoDto, trackingInformationDto);
+        ParcelEntity parcelEntity = parcelMapper.from(parcel,null, null);
 
         parcelEntity = parcelRepository.save(parcelEntity);
 
         return parcelMapper.toParcelDto(parcelEntity);
     }
-
 }
