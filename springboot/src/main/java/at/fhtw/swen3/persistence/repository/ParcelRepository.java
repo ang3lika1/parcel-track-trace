@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ParcelRepository extends JpaRepository<ParcelEntity, Long> {
-    List<ParcelEntity> findByTrackingId(String trackingId);
+    ParcelEntity findByTrackingId(String trackingId);
 }
