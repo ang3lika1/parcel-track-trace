@@ -16,8 +16,8 @@ public class ParcelServiceImpl implements ParcelService{
 
     private final ParcelMapper parcelMapper;
     private final Validator validator;
-    @Resource
-    private ParcelRepository parcelRepository;
+
+    private final ParcelRepository parcelRepository;
 
     @Override
     public ParcelDto saveNewParcel(ParcelDto parcel) {
