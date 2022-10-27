@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-//@EnableJpaRepositories(basePackages="at.fhtw.swen3.persistence.repository", entityManagerFactoryRef="entityManagerFactory")
 public class SpringConfig {
 
     @Bean
@@ -33,31 +32,4 @@ public class SpringConfig {
     public ParcelMapper getParcelMapper() {
         return new ParcelMapperImpl();
     }
-
-    /*@Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPackagesToScan(new String[] {
-                "at.fhtw.swen3.persistence.entity"
-        });
-
-        final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
-
-        return entityManagerFactoryBean;
-    }
-    @Autowired
-    private Environment env;
-
-    @Bean
-    public DataSource dataSource() {
-        final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(Objects.requireNonNull(env.getProperty("spring.datasource.driver-class-name")));
-        dataSource.setUrl(env.getProperty("spring.datasource.url"));
-        dataSource.setUsername(env.getProperty("spring.datasource.username"));
-        dataSource.setPassword(env.getProperty("spring.datasource.password"));
-        return dataSource;
-    }*/
-
 }

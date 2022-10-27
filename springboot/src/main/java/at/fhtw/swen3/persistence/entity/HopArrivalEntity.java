@@ -20,10 +20,8 @@ public class HopArrivalEntity {
   @Column
   private Long id;
   @Column
-  @Pattern(regexp = " ^[A-Z]{4}\\d{1,4}$", message = "must match postal code regex")
   private String code;
   @Column
-  @Pattern(regexp = " ^[A-Za-z0-9\\s\\-]$", message = "must match postal code regex")
   private String description;
   @Column
   private OffsetDateTime dateTime;

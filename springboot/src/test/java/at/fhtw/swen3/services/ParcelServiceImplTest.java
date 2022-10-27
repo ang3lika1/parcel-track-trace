@@ -1,37 +1,32 @@
 package at.fhtw.swen3.services;
 
-import at.fhtw.swen3.SpringConfig;
 import at.fhtw.swen3.services.dto.ParcelDto;
-import at.fhtw.swen3.services.impl.ParcelApiController;
-import org.junit.jupiter.api.*;
+import at.fhtw.swen3.services.dto.RecipientDto;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
-//@EnableJpaRepositories(basePackages="at.fhtw.swen3.persistence.repository", entityManagerFactoryRef="entityManagerFactory")
+@Transactional
 class ParcelServiceImplTest {
-
     private @Mock
-    ParcelDto parcelDto;
+    RecipientDto recipientDto;
+    private @Mock
+    RecipientDto senderDto;
+
     @Autowired
     private ParcelService parcelService;
 
     @Test
     void saveNewParcel() {
-        //AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
-        //ctx.register(SpringConfig.class);
-        //ctx.refresh();
+        ParcelDto parcelDto = ParcelDto.builder()
+                .weight(0.6f)
+                .recipient(RecipientDto.builder().name("recipientname").street("Landstraße 27a").postalCode("A-3500").city("Krems an der Donau").country("Austria").build())
+                .sender(RecipientDto.builder().name("sendername").street("Engerthstraße 228/6").postalCode("A-1020").city("Wien").country("Austria").build())
+                .build();
 
-        //ParcelService parcelService = ctx.getBean(ParcelService.class);
         parcelService.saveNewParcel(parcelDto);
-
-        //ctx.close();
     }
 }
