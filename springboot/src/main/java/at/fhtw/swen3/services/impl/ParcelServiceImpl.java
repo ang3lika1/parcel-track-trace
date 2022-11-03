@@ -1,18 +1,18 @@
-package at.fhtw.swen3.services;
+package at.fhtw.swen3.services.impl;
 
-import at.fhtw.swen3.persistence.entity.EntityValidator;
 import at.fhtw.swen3.persistence.entity.ParcelEntity;
 import at.fhtw.swen3.persistence.repository.ParcelRepository;
+import at.fhtw.swen3.services.ParcelService;
+import at.fhtw.swen3.services.Validator;
 import at.fhtw.swen3.services.dto.NewParcelInfoDto;
 import at.fhtw.swen3.services.dto.ParcelDto;
 import at.fhtw.swen3.services.dto.TrackingInformationDto;
 import at.fhtw.swen3.services.mapper.ParcelMapper;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
-import javax.annotation.Resource;
-
 @RequiredArgsConstructor
-public class ParcelServiceImpl implements ParcelService{
+public class ParcelServiceImpl implements ParcelService {
 
     private final ParcelMapper parcelMapper;
     private final Validator validator;
@@ -33,5 +33,10 @@ public class ParcelServiceImpl implements ParcelService{
         parcelEntity = parcelRepository.save(parcelEntity);
 
         return parcelMapper.toParcelDto(parcelEntity);
+    }
+
+    @Override
+    public TrackingInformationDto trackParcel(String trackingId) {
+        return parcelMapper.toTrackingInfoDto(parcelRepository.findByTrackingId(trackingId));
     }
 }
