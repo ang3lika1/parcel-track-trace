@@ -31,9 +31,6 @@ public class ParcelRepositoryTest {
     public void testRecipientToParcel() {
         RecipientEntity recipient = RecipientEntity.builder().name("recipientname").street("Landstraße 27a").postalCode("A-3500").city("Krems an der Donau").country("Austria").build();
         RecipientEntity sender = RecipientEntity.builder().name("sendername").street("Engerthstraße 228/6").postalCode("A-1020").city("Wien").country("Austria").build();
-        //recipientRepository.save(recipient);
-        //recipientRepository.save(sender);
-
 
         ParcelEntity parcel = ParcelEntity.builder()
                 .weight(0.6f)

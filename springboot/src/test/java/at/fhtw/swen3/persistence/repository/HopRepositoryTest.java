@@ -11,9 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
-
-/*@RunWith(SpringRunner.class)
-@DataJpaTest(includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = JpaRepository.class))*/
 @SpringBootTest
 @Transactional
 @AutoConfigureTestEntityManager
