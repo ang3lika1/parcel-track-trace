@@ -1,10 +1,10 @@
 package at.fhtw.swen3;
 
-import at.fhtw.swen3.persistence.entity.EntityValidator;
-import at.fhtw.swen3.persistence.repository.ParcelRepository;
+import at.fhtw.swen3.persistence.entities.EntityValidator;
+import at.fhtw.swen3.persistence.repositories.ParcelRepository;
 import at.fhtw.swen3.services.ParcelService;
 import at.fhtw.swen3.services.impl.ParcelServiceImpl;
-import at.fhtw.swen3.services.Validator;
+import at.fhtw.swen3.services.validation.Validator;
 import at.fhtw.swen3.services.mapper.ParcelMapper;
 import at.fhtw.swen3.services.mapper.ParcelMapperImpl;
 import org.springframework.context.annotation.Bean;

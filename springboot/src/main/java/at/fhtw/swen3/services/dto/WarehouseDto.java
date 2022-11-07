@@ -27,7 +27,7 @@ public class WarehouseDto extends HopDto {
 
   @JsonProperty("nextHops")
   @Valid
-  private List<WarehouseNextHopDto> nextHops = new ArrayList<>();
+  private List<WarehouseNextHopsDto> nextHops = new ArrayList<>();
 
   public WarehouseDto level(Integer level) {
     this.level = level;
@@ -48,12 +48,12 @@ public class WarehouseDto extends HopDto {
     this.level = level;
   }
 
-  public WarehouseDto nextHops(List<WarehouseNextHopDto> nextHops) {
+  public WarehouseDto nextHops(List<WarehouseNextHopsDto> nextHops) {
     this.nextHops = nextHops;
     return this;
   }
 
-  public WarehouseDto addNextHopsItem(WarehouseNextHopDto nextHopsItem) {
+  public WarehouseDto addNextHopsItem(WarehouseNextHopsDto nextHopsItem) {
     this.nextHops.add(nextHopsItem);
     return this;
   }
@@ -64,11 +64,11 @@ public class WarehouseDto extends HopDto {
   */
   @NotNull @Valid 
   @Schema(name = "nextHops", description = "Next hops after this warehouse (warehouses or trucks).", required = true)
-  public List<WarehouseNextHopDto> getNextHops() {
+  public List<WarehouseNextHopsDto> getNextHops() {
     return nextHops;
   }
 
-  public void setNextHops(List<WarehouseNextHopDto> nextHops) {
+  public void setNextHops(List<WarehouseNextHopsDto> nextHops) {
     this.nextHops = nextHops;
   }
 

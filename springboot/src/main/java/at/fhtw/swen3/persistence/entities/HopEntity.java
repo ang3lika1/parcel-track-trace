@@ -1,7 +1,6 @@
-package at.fhtw.swen3.persistence.entity;
+package at.fhtw.swen3.persistence.entities;
 
 
-import at.fhtw.swen3.persistence.entity.GeoCoordinateEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
