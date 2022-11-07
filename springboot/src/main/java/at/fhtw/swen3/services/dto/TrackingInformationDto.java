@@ -71,11 +71,11 @@ public class TrackingInformationDto {
 
   @JsonProperty("visitedHops")
   @Valid
-  private List<HopArrival> visitedHops = new ArrayList<>();
+  private List<HopArrivalDto> visitedHops = new ArrayList<>();
 
   @JsonProperty("futureHops")
   @Valid
-  private List<HopArrival> futureHops = new ArrayList<>();
+  private List<HopArrivalDto> futureHops = new ArrayList<>();
 
   public TrackingInformationDto state(StateEnum state) {
     this.state = state;
@@ -96,12 +96,12 @@ public class TrackingInformationDto {
     this.state = state;
   }
 
-  public TrackingInformationDto visitedHops(List<HopArrival> visitedHops) {
+  public TrackingInformationDto visitedHops(List<HopArrivalDto> visitedHops) {
     this.visitedHops = visitedHops;
     return this;
   }
 
-  public TrackingInformationDto addVisitedHopsItem(HopArrival visitedHopsItem) {
+  public TrackingInformationDto addVisitedHopsItem(HopArrivalDto visitedHopsItem) {
     this.visitedHops.add(visitedHopsItem);
     return this;
   }
@@ -112,20 +112,20 @@ public class TrackingInformationDto {
   */
   @NotNull @Valid 
   @Schema(name = "visitedHops", description = "Hops visited in the past.", required = true)
-  public List<HopArrival> getVisitedHops() {
+  public List<HopArrivalDto> getVisitedHops() {
     return visitedHops;
   }
 
-  public void setVisitedHops(List<HopArrival> visitedHops) {
+  public void setVisitedHops(List<HopArrivalDto> visitedHops) {
     this.visitedHops = visitedHops;
   }
 
-  public TrackingInformationDto futureHops(List<HopArrival> futureHops) {
+  public TrackingInformationDto futureHops(List<HopArrivalDto> futureHops) {
     this.futureHops = futureHops;
     return this;
   }
 
-  public TrackingInformationDto addFutureHopsItem(HopArrival futureHopsItem) {
+  public TrackingInformationDto addFutureHopsItem(HopArrivalDto futureHopsItem) {
     this.futureHops.add(futureHopsItem);
     return this;
   }
@@ -136,11 +136,11 @@ public class TrackingInformationDto {
   */
   @NotNull @Valid 
   @Schema(name = "futureHops", description = "Hops coming up in the future - their times are estimations.", required = true)
-  public List<HopArrival> getFutureHops() {
+  public List<HopArrivalDto> getFutureHops() {
     return futureHops;
   }
 
-  public void setFutureHops(List<HopArrival> futureHops) {
+  public void setFutureHops(List<HopArrivalDto> futureHops) {
     this.futureHops = futureHops;
   }
 

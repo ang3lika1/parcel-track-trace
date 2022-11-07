@@ -21,6 +21,7 @@ import javax.annotation.Generated;
 public class NewParcelInfoDto {
 
   @JsonProperty("trackingId")
+  @Pattern(regexp = "^[A-Z0-9]{9}$", message = "must match regex (9 digits: upper case and numbers)")
   private String trackingId;
 
   public NewParcelInfoDto trackingId(String trackingId) {

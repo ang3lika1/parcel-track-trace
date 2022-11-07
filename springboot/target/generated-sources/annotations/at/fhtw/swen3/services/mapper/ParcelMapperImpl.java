@@ -3,7 +3,7 @@ package at.fhtw.swen3.services.mapper;
 import at.fhtw.swen3.persistence.entity.HopArrivalEntity;
 import at.fhtw.swen3.persistence.entity.ParcelEntity;
 import at.fhtw.swen3.persistence.entity.RecipientEntity;
-import at.fhtw.swen3.services.dto.HopArrival;
+import at.fhtw.swen3.services.dto.HopArrivalDto;
 import at.fhtw.swen3.services.dto.NewParcelInfoDto;
 import at.fhtw.swen3.services.dto.ParcelDto;
 import at.fhtw.swen3.services.dto.RecipientDto;
@@ -14,7 +14,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-18T20:05:32+0200",
+    date = "2022-11-02T07:19:32+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 18.0.1.1 (Oracle Corporation)"
 )
 public class ParcelMapperImpl implements ParcelMapper {
@@ -37,8 +37,8 @@ public class ParcelMapperImpl implements ParcelMapper {
         }
         if ( trackingInformation != null ) {
             parcelEntity.deliveryStatus( trackingInformation.getState() );
-            parcelEntity.visitedHops( hopArrivalListToHopArrivalEntityList( trackingInformation.getVisitedHops() ) );
-            parcelEntity.futureHops( hopArrivalListToHopArrivalEntityList( trackingInformation.getFutureHops() ) );
+            parcelEntity.visitedHops( hopArrivalDtoListToHopArrivalEntityList( trackingInformation.getVisitedHops() ) );
+            parcelEntity.futureHops( hopArrivalDtoListToHopArrivalEntityList( trackingInformation.getFutureHops() ) );
         }
 
         return parcelEntity.build();
@@ -81,8 +81,8 @@ public class ParcelMapperImpl implements ParcelMapper {
         TrackingInformationDto.TrackingInformationDtoBuilder trackingInformationDto = TrackingInformationDto.builder();
 
         trackingInformationDto.state( entity.getDeliveryStatus() );
-        trackingInformationDto.visitedHops( hopArrivalEntityListToHopArrivalList( entity.getVisitedHops() ) );
-        trackingInformationDto.futureHops( hopArrivalEntityListToHopArrivalList( entity.getFutureHops() ) );
+        trackingInformationDto.visitedHops( hopArrivalEntityListToHopArrivalDtoList( entity.getVisitedHops() ) );
+        trackingInformationDto.futureHops( hopArrivalEntityListToHopArrivalDtoList( entity.getFutureHops() ) );
 
         return trackingInformationDto.build();
     }
@@ -103,28 +103,28 @@ public class ParcelMapperImpl implements ParcelMapper {
         return recipientEntity.build();
     }
 
-    protected HopArrivalEntity hopArrivalToHopArrivalEntity(HopArrival hopArrival) {
-        if ( hopArrival == null ) {
+    protected HopArrivalEntity hopArrivalDtoToHopArrivalEntity(HopArrivalDto hopArrivalDto) {
+        if ( hopArrivalDto == null ) {
             return null;
         }
 
         HopArrivalEntity hopArrivalEntity = new HopArrivalEntity();
 
-        hopArrivalEntity.setCode( hopArrival.getCode() );
-        hopArrivalEntity.setDescription( hopArrival.getDescription() );
-        hopArrivalEntity.setDateTime( hopArrival.getDateTime() );
+        hopArrivalEntity.setCode( hopArrivalDto.getCode() );
+        hopArrivalEntity.setDescription( hopArrivalDto.getDescription() );
+        hopArrivalEntity.setDateTime( hopArrivalDto.getDateTime() );
 
         return hopArrivalEntity;
     }
 
-    protected List<HopArrivalEntity> hopArrivalListToHopArrivalEntityList(List<HopArrival> list) {
+    protected List<HopArrivalEntity> hopArrivalDtoListToHopArrivalEntityList(List<HopArrivalDto> list) {
         if ( list == null ) {
             return null;
         }
 
         List<HopArrivalEntity> list1 = new ArrayList<HopArrivalEntity>( list.size() );
-        for ( HopArrival hopArrival : list ) {
-            list1.add( hopArrivalToHopArrivalEntity( hopArrival ) );
+        for ( HopArrivalDto hopArrivalDto : list ) {
+            list1.add( hopArrivalDtoToHopArrivalEntity( hopArrivalDto ) );
         }
 
         return list1;
@@ -146,28 +146,28 @@ public class ParcelMapperImpl implements ParcelMapper {
         return recipientDto.build();
     }
 
-    protected HopArrival hopArrivalEntityToHopArrival(HopArrivalEntity hopArrivalEntity) {
+    protected HopArrivalDto hopArrivalEntityToHopArrivalDto(HopArrivalEntity hopArrivalEntity) {
         if ( hopArrivalEntity == null ) {
             return null;
         }
 
-        HopArrival hopArrival = new HopArrival();
+        HopArrivalDto hopArrivalDto = new HopArrivalDto();
 
-        hopArrival.setCode( hopArrivalEntity.getCode() );
-        hopArrival.setDescription( hopArrivalEntity.getDescription() );
-        hopArrival.setDateTime( hopArrivalEntity.getDateTime() );
+        hopArrivalDto.setCode( hopArrivalEntity.getCode() );
+        hopArrivalDto.setDescription( hopArrivalEntity.getDescription() );
+        hopArrivalDto.setDateTime( hopArrivalEntity.getDateTime() );
 
-        return hopArrival;
+        return hopArrivalDto;
     }
 
-    protected List<HopArrival> hopArrivalEntityListToHopArrivalList(List<HopArrivalEntity> list) {
+    protected List<HopArrivalDto> hopArrivalEntityListToHopArrivalDtoList(List<HopArrivalEntity> list) {
         if ( list == null ) {
             return null;
         }
 
-        List<HopArrival> list1 = new ArrayList<HopArrival>( list.size() );
+        List<HopArrivalDto> list1 = new ArrayList<HopArrivalDto>( list.size() );
         for ( HopArrivalEntity hopArrivalEntity : list ) {
-            list1.add( hopArrivalEntityToHopArrival( hopArrivalEntity ) );
+            list1.add( hopArrivalEntityToHopArrivalDto( hopArrivalEntity ) );
         }
 
         return list1;

@@ -3,11 +3,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-package at.fhtw.swen3.services;
+package at.fhtw.swen3.controller;
 
 import at.fhtw.swen3.services.dto.Error;
-import at.fhtw.swen3.services.dto.Hop;
-import at.fhtw.swen3.services.dto.Warehouse;
+import at.fhtw.swen3.services.dto.HopDto;
+import at.fhtw.swen3.services.dto.WarehouseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -48,7 +48,7 @@ public interface WarehouseApi {
         tags = { "warehouse-management" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful response", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Warehouse.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = WarehouseDto.class))
             }),
             @ApiResponse(responseCode = "400", description = "The operation failed due to an error.", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
@@ -61,7 +61,7 @@ public interface WarehouseApi {
         value = "/warehouse",
         produces = { "application/json" }
     )
-    default ResponseEntity<Warehouse> exportWarehouses(
+    default ResponseEntity<WarehouseDto> exportWarehouses(
         
     ) {
         getRequest().ifPresent(request -> {
@@ -92,7 +92,7 @@ public interface WarehouseApi {
         tags = { "warehouse-management" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful response", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Hop.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = HopDto.class))
             }),
             @ApiResponse(responseCode = "400", description = "The operation failed due to an error.", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
@@ -105,7 +105,7 @@ public interface WarehouseApi {
         value = "/warehouse/{code}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Hop> getWarehouse(
+    default ResponseEntity<HopDto> getWarehouse(
         @Parameter(name = "code", description = "", required = true) @PathVariable("code") String code
     ) {
         getRequest().ifPresent(request -> {
@@ -147,7 +147,7 @@ public interface WarehouseApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<Void> importWarehouses(
-        @Parameter(name = "Warehouse", description = "", required = true) @Valid @RequestBody Warehouse warehouse
+        @Parameter(name = "Warehouse", description = "", required = true) @Valid @RequestBody WarehouseDto warehouse
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
