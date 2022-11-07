@@ -1,4 +1,4 @@
-package at.fhtw.swen3.persistence.entity;
+package at.fhtw.swen3.persistence.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,5 +24,5 @@ public class WarehouseEntity {
     private Integer level;
 
     @OneToMany(mappedBy = "warehouse")
-    private List<WarehouseNextHopEntity> nextHops = new ArrayList<>();
+    private List<WarehouseNextHopsEntity> nextHops = new ArrayList<>();
 }

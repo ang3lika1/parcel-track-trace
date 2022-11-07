@@ -1,7 +1,6 @@
 package at.fhtw.swen3.services.dto;
 
-import at.fhtw.swen3.persistence.entity.RecipientEntity;
-import at.fhtw.swen3.services.Validator;
+import at.fhtw.swen3.services.validation.Validator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

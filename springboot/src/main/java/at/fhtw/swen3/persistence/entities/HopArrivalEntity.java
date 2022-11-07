@@ -1,9 +1,8 @@
-package at.fhtw.swen3.persistence.entity;
+package at.fhtw.swen3.persistence.entities;
 
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
 import java.time.OffsetDateTime;
 
 /**

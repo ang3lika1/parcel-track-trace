@@ -1,14 +1,13 @@
 package at.fhtw.swen3.services.impl;
 
-import at.fhtw.swen3.persistence.entity.ParcelEntity;
-import at.fhtw.swen3.persistence.repository.ParcelRepository;
+import at.fhtw.swen3.persistence.entities.ParcelEntity;
+import at.fhtw.swen3.persistence.repositories.ParcelRepository;
 import at.fhtw.swen3.services.ParcelService;
-import at.fhtw.swen3.services.Validator;
+import at.fhtw.swen3.services.validation.Validator;
 import at.fhtw.swen3.services.dto.NewParcelInfoDto;
 import at.fhtw.swen3.services.dto.ParcelDto;
 import at.fhtw.swen3.services.dto.TrackingInformationDto;
 import at.fhtw.swen3.services.mapper.ParcelMapper;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

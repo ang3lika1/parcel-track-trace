@@ -1,9 +1,7 @@
-package at.fhtw.swen3.persistence.repository;
+package at.fhtw.swen3.persistence.repositories;
 
-import at.fhtw.swen3.persistence.entity.HopEntity;
-import at.fhtw.swen3.persistence.entity.TruckEntity;
-import at.fhtw.swen3.persistence.entity.WarehouseEntity;
-import at.fhtw.swen3.persistence.entity.WarehouseNextHopEntity;
+import at.fhtw.swen3.persistence.entities.WarehouseEntity;
+import at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class WarehouseRepositoryTest {
     @Autowired
     private WarehouseRepository warehouseRepository;
-    private @Mock WarehouseNextHopEntity warehouseNextHop;
-    private final List<WarehouseNextHopEntity> nextHops = Arrays.asList(warehouseNextHop, warehouseNextHop, warehouseNextHop);
+    private @Mock WarehouseNextHopsEntity warehouseNextHop;
+    private final List<WarehouseNextHopsEntity> nextHops = Arrays.asList(warehouseNextHop, warehouseNextHop, warehouseNextHop);
 
     @Test
     public void should_find_no_warehouse_if_repository_is_empty() {
