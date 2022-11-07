@@ -1,8 +1,8 @@
-package at.fhtw.swen3.persistence.repository;
+package at.fhtw.swen3.persistence.repositories;
 
-import at.fhtw.swen3.persistence.entity.HopArrivalEntity;
-import at.fhtw.swen3.persistence.entity.ParcelEntity;
-import at.fhtw.swen3.persistence.entity.RecipientEntity;
+import at.fhtw.swen3.persistence.entities.HopArrivalEntity;
+import at.fhtw.swen3.persistence.entities.ParcelEntity;
+import at.fhtw.swen3.persistence.entities.RecipientEntity;
 import at.fhtw.swen3.services.dto.TrackingInformationDto;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
