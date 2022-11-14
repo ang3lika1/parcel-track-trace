@@ -141,6 +141,7 @@ public interface ParcelApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+
                     String exampleString = "{ \"trackingId\" : \"PYJRB4HZ6\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
