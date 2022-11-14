@@ -10,36 +10,36 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.validation.ConstraintViolationException;
 
 @SpringBootTest
-public class ParcelDtoValidatorTest {
+public class ParcelValidatorTest {
     @Autowired
     Validator validator;
 
     private @Mock
-    RecipientDto recipientDto;
+    Recipient recipient;
     private @Mock
-    RecipientDto senderDto;
+    Recipient senderDto;
 
     @Test
     void validateParcelThrow(){
-        ParcelDto parcelDto = ParcelDto.builder()
+        Parcel parcel = Parcel.builder()
                 .weight(0.0f)
-                .recipient(recipientDto)
+                .recipient(recipient)
                 .sender(senderDto)
                 .build();
 
         Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            validator.validate(parcelDto);
+            validator.validate(parcel);
         });
     }
 
     @Test
     void validateParcelNotThrow(){
-        ParcelDto parcelDto = ParcelDto.builder()
+        Parcel parcel = Parcel.builder()
                 .weight(0.6f)
-                .recipient(RecipientDto.builder().name("recipientname").street("Landstraße 27a").postalCode("A-3500").city("Krems an der Donau").country("Austria").build())
-                .sender(RecipientDto.builder().name("sendername").street("Engerthstraße 228/6").postalCode("A-1020").city("Wien").country("Austria").build())
+                .recipient(Recipient.builder().name("recipientname").street("Landstraße 27a").postalCode("A-3500").city("Krems an der Donau").country("Austria").build())
+                .sender(Recipient.builder().name("sendername").street("Engerthstraße 228/6").postalCode("A-1020").city("Wien").country("Austria").build())
                 .build();
 
-        Assertions.assertDoesNotThrow(() -> validator.validate(parcelDto));
+        Assertions.assertDoesNotThrow(() -> validator.validate(parcel));
     }
 }

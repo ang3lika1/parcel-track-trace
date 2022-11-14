@@ -4,9 +4,9 @@ import at.fhtw.swen3.persistence.entities.HopArrivalEntity;
 import at.fhtw.swen3.persistence.entities.ParcelEntity;
 import at.fhtw.swen3.persistence.entities.RecipientEntity;
 import at.fhtw.swen3.persistence.repositories.ParcelRepository;
-import at.fhtw.swen3.services.dto.ParcelDto;
-import at.fhtw.swen3.services.dto.RecipientDto;
-import at.fhtw.swen3.services.dto.TrackingInformationDto;
+import at.fhtw.swen3.services.dto.Parcel;
+import at.fhtw.swen3.services.dto.Recipient;
+import at.fhtw.swen3.services.dto.TrackingInformation;
 import at.fhtw.swen3.services.impl.ParcelServiceImpl;
 import at.fhtw.swen3.services.mapper.ParcelMapper;
 import at.fhtw.swen3.services.validation.Validator;
@@ -28,9 +28,9 @@ import static org.mockito.ArgumentMatchers.any;
 @Transactional
 class ParcelServiceImplTest {
     private @Mock
-    RecipientDto recipientDto;
+    Recipient recipient;
     private @Mock
-    RecipientDto senderDto;
+    Recipient senderDto;
 
     @Autowired
     private ParcelService parcelService;
@@ -46,8 +46,8 @@ class ParcelServiceImplTest {
     private ParcelMapper parcelMapper;
 
 
-    private ParcelEntity parcel;
-    private ParcelDto parcelDto;
+    private ParcelEntity parcelEntity;
+    private Parcel parcel;
 
     @BeforeEach
     public void setup(){
@@ -56,37 +56,37 @@ class ParcelServiceImplTest {
 
         final List<HopArrivalEntity> fakeHops = Arrays.asList(null, null, null);
 
-        parcel = ParcelEntity.builder()
+        parcelEntity = ParcelEntity.builder()
                 .weight(0.6f)
                 .recipient(recipient)
                 .sender(sender)
                 .trackingId("PYJRB4HZ6")
-                .deliveryStatus(TrackingInformationDto.StateEnum.INTRANSPORT)
+                .deliveryStatus(TrackingInformation.StateEnum.INTRANSPORT)
                 .visitedHops(fakeHops)
                 .futureHops(fakeHops)
                 .build();
 
-        parcelDto = ParcelDto.builder()
+        parcel = Parcel.builder()
                 .weight(0.6f)
-                .recipient(RecipientDto.builder().name("recipientname").street("Landstraße 27a").postalCode("A-3500").city("Krems an der Donau").country("Austria").build())
-                .sender(RecipientDto.builder().name("sendername").street("Engerthstraße 228/6").postalCode("A-1020").city("Wien").country("Austria").build())
+                .recipient(Recipient.builder().name("recipientname").street("Landstraße 27a").postalCode("A-3500").city("Krems an der Donau").country("Austria").build())
+                .sender(Recipient.builder().name("sendername").street("Engerthstraße 228/6").postalCode("A-1020").city("Wien").country("Austria").build())
                 .build();
     }
 
     @Test
     void saveNewParcel() {
-        ParcelDto savedParcel = parcelService.saveNewParcel(parcelDto);
-        parcelServiceImpl.saveNewParcel(parcelDto);
-        assertThat(savedParcel).isEqualTo(parcelDto);
+        Parcel savedParcel = parcelService.saveNewParcel(parcel);
+        parcelServiceImpl.saveNewParcel(parcel);
+        assertThat(savedParcel).isEqualTo(parcel);
     }
 
     @Test
     void trackParcel() {
-        parcelRepository.save(parcel);
+        parcelRepository.save(parcelEntity);
 
-        TrackingInformationDto trackedParcel = parcelService.trackParcel(parcel.getTrackingId());
+        TrackingInformation trackedParcel = parcelService.trackParcel(parcelEntity.getTrackingId());
 
-        assertThat(trackedParcel).isEqualTo(parcelMapper.toTrackingInfoDto(parcel));
+        assertThat(trackedParcel).isEqualTo(parcelMapper.toTrackingInfoDto(parcelEntity));
     }
 
 

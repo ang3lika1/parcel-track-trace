@@ -9,13 +9,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.validation.ConstraintViolationException;
 
 @SpringBootTest
-public class RecipientDtoTest {
+public class RecipientTest {
     @Autowired
     Validator validator;
 
     @Test
     void validateRecipientThrow() {
-        RecipientDto recipientDto = RecipientDto.builder()
+        Recipient recipient = Recipient.builder()
                 .name("test name")
                 .street("Arnold Fink Str. 13")
                 .postalCode("A-3667830")
@@ -24,13 +24,13 @@ public class RecipientDtoTest {
                 .build();
 
         Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            validator.validate(recipientDto);
+            validator.validate(recipient);
         });
     }
 
     @Test
     void validateRecipientNotThrow() {
-        RecipientDto recipientDto = RecipientDto.builder()
+        Recipient recipient = Recipient.builder()
                 .name("test name")
                 .street("Landstraße 27a")
                 .postalCode("A-3500")
@@ -38,6 +38,6 @@ public class RecipientDtoTest {
                 .country("Austria")
                 .build();
 
-        Assertions.assertDoesNotThrow(() -> validator.validate(recipientDto));
+        Assertions.assertDoesNotThrow(() -> validator.validate(recipient));
     }
 }

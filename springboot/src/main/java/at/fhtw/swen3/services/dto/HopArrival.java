@@ -19,7 +19,7 @@ import javax.annotation.Generated;
 
 @JsonTypeName("hopArrival")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
-public class HopArrivalDto {
+public class HopArrival {
 
   @JsonProperty("code")
   @Pattern(regexp = " ^[A-Z]{4}\\d{1,4}$", message = "must match postal code regex")
@@ -33,7 +33,7 @@ public class HopArrivalDto {
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime dateTime;
 
-  public HopArrivalDto code(String code) {
+  public HopArrival code(String code) {
     this.code = code;
     return this;
   }
@@ -52,7 +52,7 @@ public class HopArrivalDto {
     this.code = code;
   }
 
-  public HopArrivalDto description(String description) {
+  public HopArrival description(String description) {
     this.description = description;
     return this;
   }
@@ -71,7 +71,7 @@ public class HopArrivalDto {
     this.description = description;
   }
 
-  public HopArrivalDto dateTime(OffsetDateTime dateTime) {
+  public HopArrival dateTime(OffsetDateTime dateTime) {
     this.dateTime = dateTime;
     return this;
   }
@@ -98,7 +98,7 @@ public class HopArrivalDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    HopArrivalDto hopArrival = (HopArrivalDto) o;
+    HopArrival hopArrival = (HopArrival) o;
     return Objects.equals(this.code, hopArrival.code) &&
         Objects.equals(this.description, hopArrival.description) &&
         Objects.equals(this.dateTime, hopArrival.dateTime);

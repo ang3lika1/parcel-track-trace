@@ -3,24 +3,24 @@ package at.fhtw.swen3.services.mapper;
 import at.fhtw.swen3.persistence.entities.HopArrivalEntity;
 import at.fhtw.swen3.persistence.entities.ParcelEntity;
 import at.fhtw.swen3.persistence.entities.RecipientEntity;
-import at.fhtw.swen3.services.dto.HopArrivalDto;
-import at.fhtw.swen3.services.dto.NewParcelInfoDto;
-import at.fhtw.swen3.services.dto.ParcelDto;
-import at.fhtw.swen3.services.dto.RecipientDto;
-import at.fhtw.swen3.services.dto.TrackingInformationDto;
+import at.fhtw.swen3.services.dto.HopArrival;
+import at.fhtw.swen3.services.dto.NewParcelInfo;
+import at.fhtw.swen3.services.dto.Parcel;
+import at.fhtw.swen3.services.dto.Recipient;
+import at.fhtw.swen3.services.dto.TrackingInformation;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-07T13:39:24+0100",
+    date = "2022-11-14T13:55:41+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 18.0.1.1 (Oracle Corporation)"
 )
 public class ParcelMapperImpl implements ParcelMapper {
 
     @Override
-    public ParcelEntity from(ParcelDto parcel, NewParcelInfoDto newParcelInfo, TrackingInformationDto trackingInformation) {
+    public ParcelEntity from(Parcel parcel, NewParcelInfo newParcelInfo, TrackingInformation trackingInformation) {
         if ( parcel == null && newParcelInfo == null && trackingInformation == null ) {
             return null;
         }
@@ -29,145 +29,145 @@ public class ParcelMapperImpl implements ParcelMapper {
 
         if ( parcel != null ) {
             parcelEntity.weight( parcel.getWeight() );
-            parcelEntity.recipient( recipientDtoToRecipientEntity( parcel.getRecipient() ) );
-            parcelEntity.sender( recipientDtoToRecipientEntity( parcel.getSender() ) );
+            parcelEntity.recipient( recipientToRecipientEntity( parcel.getRecipient() ) );
+            parcelEntity.sender( recipientToRecipientEntity( parcel.getSender() ) );
         }
         if ( newParcelInfo != null ) {
             parcelEntity.trackingId( newParcelInfo.getTrackingId() );
         }
         if ( trackingInformation != null ) {
             parcelEntity.deliveryStatus( trackingInformation.getState() );
-            parcelEntity.visitedHops( hopArrivalDtoListToHopArrivalEntityList( trackingInformation.getVisitedHops() ) );
-            parcelEntity.futureHops( hopArrivalDtoListToHopArrivalEntityList( trackingInformation.getFutureHops() ) );
+            parcelEntity.visitedHops( hopArrivalListToHopArrivalEntityList( trackingInformation.getVisitedHops() ) );
+            parcelEntity.futureHops( hopArrivalListToHopArrivalEntityList( trackingInformation.getFutureHops() ) );
         }
 
         return parcelEntity.build();
     }
 
     @Override
-    public ParcelDto toParcelDto(ParcelEntity entity) {
+    public Parcel toParcelDto(ParcelEntity entity) {
         if ( entity == null ) {
             return null;
         }
 
-        ParcelDto.ParcelDtoBuilder parcelDto = ParcelDto.builder();
+        Parcel.ParcelBuilder parcel = Parcel.builder();
 
-        parcelDto.weight( entity.getWeight() );
-        parcelDto.recipient( recipientEntityToRecipientDto( entity.getRecipient() ) );
-        parcelDto.sender( recipientEntityToRecipientDto( entity.getSender() ) );
+        parcel.weight( entity.getWeight() );
+        parcel.recipient( recipientEntityToRecipient( entity.getRecipient() ) );
+        parcel.sender( recipientEntityToRecipient( entity.getSender() ) );
 
-        return parcelDto.build();
+        return parcel.build();
     }
 
     @Override
-    public NewParcelInfoDto toParcelInfoDto(ParcelEntity entity) {
+    public NewParcelInfo toParcelInfoDto(ParcelEntity entity) {
         if ( entity == null ) {
             return null;
         }
 
-        NewParcelInfoDto.NewParcelInfoDtoBuilder newParcelInfoDto = NewParcelInfoDto.builder();
+        NewParcelInfo.NewParcelInfoBuilder newParcelInfo = NewParcelInfo.builder();
 
-        newParcelInfoDto.trackingId( entity.getTrackingId() );
+        newParcelInfo.trackingId( entity.getTrackingId() );
 
-        return newParcelInfoDto.build();
+        return newParcelInfo.build();
     }
 
     @Override
-    public TrackingInformationDto toTrackingInfoDto(ParcelEntity entity) {
+    public TrackingInformation toTrackingInfoDto(ParcelEntity entity) {
         if ( entity == null ) {
             return null;
         }
 
-        TrackingInformationDto.TrackingInformationDtoBuilder trackingInformationDto = TrackingInformationDto.builder();
+        TrackingInformation.TrackingInformationBuilder trackingInformation = TrackingInformation.builder();
 
-        trackingInformationDto.state( entity.getDeliveryStatus() );
-        trackingInformationDto.visitedHops( hopArrivalEntityListToHopArrivalDtoList( entity.getVisitedHops() ) );
-        trackingInformationDto.futureHops( hopArrivalEntityListToHopArrivalDtoList( entity.getFutureHops() ) );
+        trackingInformation.state( entity.getDeliveryStatus() );
+        trackingInformation.visitedHops( hopArrivalEntityListToHopArrivalList( entity.getVisitedHops() ) );
+        trackingInformation.futureHops( hopArrivalEntityListToHopArrivalList( entity.getFutureHops() ) );
 
-        return trackingInformationDto.build();
+        return trackingInformation.build();
     }
 
-    protected RecipientEntity recipientDtoToRecipientEntity(RecipientDto recipientDto) {
-        if ( recipientDto == null ) {
+    protected RecipientEntity recipientToRecipientEntity(Recipient recipient) {
+        if ( recipient == null ) {
             return null;
         }
 
         RecipientEntity.RecipientEntityBuilder recipientEntity = RecipientEntity.builder();
 
-        recipientEntity.name( recipientDto.getName() );
-        recipientEntity.street( recipientDto.getStreet() );
-        recipientEntity.postalCode( recipientDto.getPostalCode() );
-        recipientEntity.city( recipientDto.getCity() );
-        recipientEntity.country( recipientDto.getCountry() );
+        recipientEntity.name( recipient.getName() );
+        recipientEntity.street( recipient.getStreet() );
+        recipientEntity.postalCode( recipient.getPostalCode() );
+        recipientEntity.city( recipient.getCity() );
+        recipientEntity.country( recipient.getCountry() );
 
         return recipientEntity.build();
     }
 
-    protected HopArrivalEntity hopArrivalDtoToHopArrivalEntity(HopArrivalDto hopArrivalDto) {
-        if ( hopArrivalDto == null ) {
+    protected HopArrivalEntity hopArrivalToHopArrivalEntity(HopArrival hopArrival) {
+        if ( hopArrival == null ) {
             return null;
         }
 
         HopArrivalEntity hopArrivalEntity = new HopArrivalEntity();
 
-        hopArrivalEntity.setCode( hopArrivalDto.getCode() );
-        hopArrivalEntity.setDescription( hopArrivalDto.getDescription() );
-        hopArrivalEntity.setDateTime( hopArrivalDto.getDateTime() );
+        hopArrivalEntity.setCode( hopArrival.getCode() );
+        hopArrivalEntity.setDescription( hopArrival.getDescription() );
+        hopArrivalEntity.setDateTime( hopArrival.getDateTime() );
 
         return hopArrivalEntity;
     }
 
-    protected List<HopArrivalEntity> hopArrivalDtoListToHopArrivalEntityList(List<HopArrivalDto> list) {
+    protected List<HopArrivalEntity> hopArrivalListToHopArrivalEntityList(List<HopArrival> list) {
         if ( list == null ) {
             return null;
         }
 
         List<HopArrivalEntity> list1 = new ArrayList<HopArrivalEntity>( list.size() );
-        for ( HopArrivalDto hopArrivalDto : list ) {
-            list1.add( hopArrivalDtoToHopArrivalEntity( hopArrivalDto ) );
+        for ( HopArrival hopArrival : list ) {
+            list1.add( hopArrivalToHopArrivalEntity( hopArrival ) );
         }
 
         return list1;
     }
 
-    protected RecipientDto recipientEntityToRecipientDto(RecipientEntity recipientEntity) {
+    protected Recipient recipientEntityToRecipient(RecipientEntity recipientEntity) {
         if ( recipientEntity == null ) {
             return null;
         }
 
-        RecipientDto.RecipientDtoBuilder recipientDto = RecipientDto.builder();
+        Recipient.RecipientBuilder recipient = Recipient.builder();
 
-        recipientDto.name( recipientEntity.getName() );
-        recipientDto.street( recipientEntity.getStreet() );
-        recipientDto.postalCode( recipientEntity.getPostalCode() );
-        recipientDto.city( recipientEntity.getCity() );
-        recipientDto.country( recipientEntity.getCountry() );
+        recipient.name( recipientEntity.getName() );
+        recipient.street( recipientEntity.getStreet() );
+        recipient.postalCode( recipientEntity.getPostalCode() );
+        recipient.city( recipientEntity.getCity() );
+        recipient.country( recipientEntity.getCountry() );
 
-        return recipientDto.build();
+        return recipient.build();
     }
 
-    protected HopArrivalDto hopArrivalEntityToHopArrivalDto(HopArrivalEntity hopArrivalEntity) {
+    protected HopArrival hopArrivalEntityToHopArrival(HopArrivalEntity hopArrivalEntity) {
         if ( hopArrivalEntity == null ) {
             return null;
         }
 
-        HopArrivalDto hopArrivalDto = new HopArrivalDto();
+        HopArrival hopArrival = new HopArrival();
 
-        hopArrivalDto.setCode( hopArrivalEntity.getCode() );
-        hopArrivalDto.setDescription( hopArrivalEntity.getDescription() );
-        hopArrivalDto.setDateTime( hopArrivalEntity.getDateTime() );
+        hopArrival.setCode( hopArrivalEntity.getCode() );
+        hopArrival.setDescription( hopArrivalEntity.getDescription() );
+        hopArrival.setDateTime( hopArrivalEntity.getDateTime() );
 
-        return hopArrivalDto;
+        return hopArrival;
     }
 
-    protected List<HopArrivalDto> hopArrivalEntityListToHopArrivalDtoList(List<HopArrivalEntity> list) {
+    protected List<HopArrival> hopArrivalEntityListToHopArrivalList(List<HopArrivalEntity> list) {
         if ( list == null ) {
             return null;
         }
 
-        List<HopArrivalDto> list1 = new ArrayList<HopArrivalDto>( list.size() );
+        List<HopArrival> list1 = new ArrayList<HopArrival>( list.size() );
         for ( HopArrivalEntity hopArrivalEntity : list ) {
-            list1.add( hopArrivalEntityToHopArrivalDto( hopArrivalEntity ) );
+            list1.add( hopArrivalEntityToHopArrival( hopArrivalEntity ) );
         }
 
         return list1;
