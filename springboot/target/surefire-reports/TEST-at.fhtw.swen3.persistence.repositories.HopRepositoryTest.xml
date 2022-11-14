@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="at.fhtw.swen3.OpenApiGeneratorApplicationTests" time="6.839" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="at.fhtw.swen3.persistence.repositories.HopRepositoryTest" time="1.898" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="18"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -57,5 +57,11 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="62.0"/>
   </properties>
-  <testcase name="contextLoads" classname="at.fhtw.swen3.OpenApiGeneratorApplicationTests" time="0.272"/>
+  <testcase name="should_delete_tutorial_by_id" classname="at.fhtw.swen3.persistence.repositories.HopRepositoryTest" time="0.26"/>
+  <testcase name="should_update_hop_by_id" classname="at.fhtw.swen3.persistence.repositories.HopRepositoryTest" time="0.023"/>
+  <testcase name="should_find_all_hops" classname="at.fhtw.swen3.persistence.repositories.HopRepositoryTest" time="0.018"/>
+  <testcase name="should_delete_all_tutorials" classname="at.fhtw.swen3.persistence.repositories.HopRepositoryTest" time="0.032"/>
+  <testcase name="should_find_no_hops_if_repository_is_empty" classname="at.fhtw.swen3.persistence.repositories.HopRepositoryTest" time="0.02"/>
+  <testcase name="should_store_a_hop" classname="at.fhtw.swen3.persistence.repositories.HopRepositoryTest" time="0.01"/>
+  <testcase name="should_find_hop_by_id" classname="at.fhtw.swen3.persistence.repositories.HopRepositoryTest" time="0.01"/>
 </testsuite>
