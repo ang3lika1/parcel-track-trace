@@ -18,15 +18,15 @@ import javax.annotation.Generated;
 
 @JsonTypeName("warehouse_allOf_nextHops")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
-public class WarehouseNextHopsDto {
+public class WarehouseNextHops {
 
   @JsonProperty("traveltimeMins")
   private Integer traveltimeMins;
 
   @JsonProperty("hop")
-  private HopDto hop;
+  private Hop hop;
 
-  public WarehouseNextHopsDto traveltimeMins(Integer traveltimeMins) {
+  public WarehouseNextHops traveltimeMins(Integer traveltimeMins) {
     this.traveltimeMins = traveltimeMins;
     return this;
   }
@@ -45,7 +45,7 @@ public class WarehouseNextHopsDto {
     this.traveltimeMins = traveltimeMins;
   }
 
-  public WarehouseNextHopsDto hop(HopDto hop) {
+  public WarehouseNextHops hop(Hop hop) {
     this.hop = hop;
     return this;
   }
@@ -56,11 +56,11 @@ public class WarehouseNextHopsDto {
   */
   @NotNull @Valid 
   @Schema(name = "hop", required = true)
-  public HopDto getHop() {
+  public Hop getHop() {
     return hop;
   }
 
-  public void setHop(HopDto hop) {
+  public void setHop(Hop hop) {
     this.hop = hop;
   }
 
@@ -72,7 +72,7 @@ public class WarehouseNextHopsDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WarehouseNextHopsDto warehouseNextHops = (WarehouseNextHopsDto) o;
+    WarehouseNextHops warehouseNextHops = (WarehouseNextHops) o;
     return Objects.equals(this.traveltimeMins, warehouseNextHops.traveltimeMins) &&
         Objects.equals(this.hop, warehouseNextHops.hop);
   }

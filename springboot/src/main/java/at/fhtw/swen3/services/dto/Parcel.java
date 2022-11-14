@@ -20,19 +20,19 @@ import javax.annotation.Generated;
 @JsonTypeName("parcel")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
 @Builder
-public class ParcelDto {
+public class Parcel {
 
   @JsonProperty("weight")
   @DecimalMin(value = "0.1", message = "parcel weight must be over 0.0")
   private Float weight;
 
   @JsonProperty("recipient")
-  private RecipientDto recipient;
+  private Recipient recipient;
 
   @JsonProperty("sender")
-  private RecipientDto sender;
+  private Recipient sender;
 
-  public ParcelDto weight(Float weight) {
+  public Parcel weight(Float weight) {
     this.weight = weight;
     return this;
   }
@@ -51,7 +51,7 @@ public class ParcelDto {
     this.weight = weight;
   }
 
-  public ParcelDto recipient(RecipientDto recipient) {
+  public Parcel recipient(Recipient recipient) {
     this.recipient = recipient;
     return this;
   }
@@ -62,15 +62,15 @@ public class ParcelDto {
   */
   @NotNull @Valid 
   @Schema(name = "recipient", required = true)
-  public RecipientDto getRecipient() {
+  public Recipient getRecipient() {
     return recipient;
   }
 
-  public void setRecipient(RecipientDto recipient) {
+  public void setRecipient(Recipient recipient) {
     this.recipient = recipient;
   }
 
-  public ParcelDto sender(RecipientDto sender) {
+  public Parcel sender(Recipient sender) {
     this.sender = sender;
     return this;
   }
@@ -81,11 +81,11 @@ public class ParcelDto {
   */
   @NotNull @Valid 
   @Schema(name = "sender", required = true)
-  public RecipientDto getSender() {
+  public Recipient getSender() {
     return sender;
   }
 
-  public void setSender(RecipientDto sender) {
+  public void setSender(Recipient sender) {
     this.sender = sender;
   }
 
@@ -97,7 +97,7 @@ public class ParcelDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ParcelDto parcel = (ParcelDto) o;
+    Parcel parcel = (Parcel) o;
     return Objects.equals(this.weight, parcel.weight) &&
         Objects.equals(this.recipient, parcel.recipient) &&
         Objects.equals(this.sender, parcel.sender);

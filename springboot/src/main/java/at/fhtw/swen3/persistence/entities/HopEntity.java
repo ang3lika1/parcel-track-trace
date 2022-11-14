@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Data
 @Builder
@@ -23,6 +26,7 @@ public class HopEntity {
     private String hopType;
 
     @Column
+    @NotNull @Pattern(regexp = "^[A-Z]{4}\\d{1,4}$")
     private String code;
 
     @Column
@@ -35,5 +39,6 @@ public class HopEntity {
     private String locationName;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @NotNull @Valid
     private GeoCoordinateEntity locationCoordinates;
 }

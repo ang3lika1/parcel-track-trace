@@ -1,12 +1,12 @@
 package at.fhtw.swen3.services;
 
-import at.fhtw.swen3.services.dto.ParcelDto;
-import at.fhtw.swen3.services.dto.TrackingInformationDto;
+import at.fhtw.swen3.services.dto.Parcel;
+import at.fhtw.swen3.services.dto.TrackingInformation;
 
 public interface ParcelService {
 
-    ParcelDto saveNewParcel(ParcelDto parcel);
+    Parcel saveNewParcel(Parcel parcel);
 
-    TrackingInformationDto trackParcel(String trackingId);
+    TrackingInformation trackParcel(String trackingId);
 
 }

@@ -16,7 +16,7 @@ import javax.annotation.Generated;
 
 @JsonTypeName("geoCoordinate")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
-public class GeoCoordinateDto {
+public class GeoCoordinate {
 
   @JsonProperty("lat")
   private Double lat;
@@ -24,7 +24,7 @@ public class GeoCoordinateDto {
   @JsonProperty("lon")
   private Double lon;
 
-  public GeoCoordinateDto lat(Double lat) {
+  public GeoCoordinate lat(Double lat) {
     this.lat = lat;
     return this;
   }
@@ -43,7 +43,7 @@ public class GeoCoordinateDto {
     this.lat = lat;
   }
 
-  public GeoCoordinateDto lon(Double lon) {
+  public GeoCoordinate lon(Double lon) {
     this.lon = lon;
     return this;
   }
@@ -70,7 +70,7 @@ public class GeoCoordinateDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoCoordinateDto geoCoordinate = (GeoCoordinateDto) o;
+    GeoCoordinate geoCoordinate = (GeoCoordinate) o;
     return Objects.equals(this.lat, geoCoordinate.lat) &&
         Objects.equals(this.lon, geoCoordinate.lon);
   }
