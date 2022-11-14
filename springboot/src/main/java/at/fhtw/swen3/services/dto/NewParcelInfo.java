@@ -18,13 +18,13 @@ import javax.annotation.Generated;
 @JsonTypeName("newParcelInfo")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
 @Builder
-public class NewParcelInfoDto {
+public class NewParcelInfo {
 
   @JsonProperty("trackingId")
   @Pattern(regexp = "^[A-Z0-9]{9}$", message = "must match regex (9 digits: upper case and numbers)")
   private String trackingId;
 
-  public NewParcelInfoDto trackingId(String trackingId) {
+  public NewParcelInfo trackingId(String trackingId) {
     this.trackingId = trackingId;
     return this;
   }
@@ -51,7 +51,7 @@ public class NewParcelInfoDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NewParcelInfoDto newParcelInfo = (NewParcelInfoDto) o;
+    NewParcelInfo newParcelInfo = (NewParcelInfo) o;
     return Objects.equals(this.trackingId, newParcelInfo.trackingId);
   }
 

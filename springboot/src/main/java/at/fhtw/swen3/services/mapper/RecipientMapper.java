@@ -1,16 +1,16 @@
 package at.fhtw.swen3.services.mapper;
 
 import at.fhtw.swen3.persistence.entities.RecipientEntity;
-import at.fhtw.swen3.services.dto.RecipientDto;
+import at.fhtw.swen3.services.dto.Recipient;
 
-public class RecipientMapper extends AbstractMapper<RecipientEntity, RecipientDto>{
+public class RecipientMapper extends AbstractMapper<RecipientEntity, Recipient>{
     @Override
-    public RecipientDto mapToTarget(RecipientEntity object) {
-        return new RecipientDto(object.getName(), object.getStreet(), object.getPostalCode(), object.getCity(), object.getCountry());
+    public Recipient mapToTarget(RecipientEntity object) {
+        return new Recipient(object.getName(), object.getStreet(), object.getPostalCode(), object.getCity(), object.getCountry());
     }
 
     @Override
-    public RecipientEntity mapToSource(RecipientDto object) {
+    public RecipientEntity mapToSource(Recipient object) {
         return RecipientEntity.builder()
                 .name(object.getName())
                 .street(object.getStreet())
