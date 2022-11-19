@@ -1,5 +1,6 @@
 package at.fhtw.swen3.services;
 
+import at.fhtw.swen3.services.dto.HopArrival;
 import at.fhtw.swen3.services.dto.Parcel;
 import at.fhtw.swen3.services.dto.TrackingInformation;
 
