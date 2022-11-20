@@ -11,7 +11,6 @@ import java.util.Set;
 
 
 @Slf4j
-@Component
 public class Validator {
     static ValidatorFactory getValidatorFactory() {
         return Validation.buildDefaultValidatorFactory();

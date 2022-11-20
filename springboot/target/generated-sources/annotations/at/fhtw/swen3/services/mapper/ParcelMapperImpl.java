@@ -14,8 +14,8 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-17T09:10:35+0100",
-    comments = "version: 1.5.2.Final, compiler: javac, environment: Java 18.0.1.1 (Oracle Corporation)"
+    date = "2022-11-20T17:24:23+0100",
+    comments = "version: 1.5.2.Final, compiler: javac, environment: Java 19 (Oracle Corporation)"
 )
 public class ParcelMapperImpl implements ParcelMapper {
 
@@ -108,13 +108,13 @@ public class ParcelMapperImpl implements ParcelMapper {
             return null;
         }
 
-        HopArrivalEntity hopArrivalEntity = new HopArrivalEntity();
+        HopArrivalEntity.HopArrivalEntityBuilder hopArrivalEntity = HopArrivalEntity.builder();
 
-        hopArrivalEntity.setCode( hopArrival.getCode() );
-        hopArrivalEntity.setDescription( hopArrival.getDescription() );
-        hopArrivalEntity.setDateTime( hopArrival.getDateTime() );
+        hopArrivalEntity.code( hopArrival.getCode() );
+        hopArrivalEntity.description( hopArrival.getDescription() );
+        hopArrivalEntity.dateTime( hopArrival.getDateTime() );
 
-        return hopArrivalEntity;
+        return hopArrivalEntity.build();
     }
 
     protected List<HopArrivalEntity> hopArrivalListToHopArrivalEntityList(List<HopArrival> list) {
@@ -151,13 +151,13 @@ public class ParcelMapperImpl implements ParcelMapper {
             return null;
         }
 
-        HopArrival hopArrival = new HopArrival();
+        HopArrival.HopArrivalBuilder hopArrival = HopArrival.builder();
 
-        hopArrival.setCode( hopArrivalEntity.getCode() );
-        hopArrival.setDescription( hopArrivalEntity.getDescription() );
-        hopArrival.setDateTime( hopArrivalEntity.getDateTime() );
+        hopArrival.code( hopArrivalEntity.getCode() );
+        hopArrival.description( hopArrivalEntity.getDescription() );
+        hopArrival.dateTime( hopArrivalEntity.getDateTime() );
 
-        return hopArrival;
+        return hopArrival.build();
     }
 
     protected List<HopArrival> hopArrivalEntityListToHopArrivalList(List<HopArrivalEntity> list) {
