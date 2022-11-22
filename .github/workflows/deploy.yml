@@ -34,34 +34,30 @@ jobs:
         # from this path
         path: springboot/target/openapi-spring-1.22.1.jar
     
-        
-      
-      
-    deploy:
-      needs: build
-      name: deploy
-      runs-on: ubuntu-latest
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
 
-      steps:
-      - name: Download Jar
-        uses: actions/download-artifact@v3
-        with: 
-          name: parcel_trackn_trace_jar
+    steps:
+    - name: Download Jar
+      uses: actions/download-artifact@v3
+      with: 
+        name: parcel_trackn_trace_jar
 
-      # Deploy the artifact (JAR) into AWS Beanstalk
-      - name: Deploy to EB
-        uses: einaregilsson/beanstalk-deploy@v13
-        with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_session_token: ${{ secrets.AWS_SESSION_TOKEN }}
-          use_existing_version_if_available: false
-          application_name: Parcel Track'n Trace
-          environment_name: Parceltrackntrace-env
-          version_label: ${{github.SHA}}
-          region: us-east-1
-          deployment_package: openapi-spring-1.22.1.jar
-      
+    # Deploy the artifact (JAR) into AWS Beanstalk
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v13
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws_session_token: ${{ secrets.AWS_SESSION_TOKEN }}
+        use_existing_version_if_available: false
+        application_name: Parcel Track'n Trace
+        environment_name: Parceltrackntrace-env
+        version_label: ${{github.SHA}}
+        region: us-east-1
+        deployment_package: openapi-spring-1.22.1.jar
+    
 
 
       #steps:       
