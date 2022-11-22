@@ -8,8 +8,8 @@ import java.io.UnsupportedEncodingException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
-class BingEncodingProxyTest {
-    BingEncodingProxy proxy = new BingEncodingProxy();
+class OpenStreetMapEncodingProxyTest {
+    OpenStreetMapEncodingProxy proxy = new OpenStreetMapEncodingProxy();
 
     @Test
     void encodeAddressTrue() throws UnsupportedEncodingException {

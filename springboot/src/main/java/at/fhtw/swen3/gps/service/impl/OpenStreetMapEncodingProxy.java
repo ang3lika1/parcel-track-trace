@@ -3,17 +3,15 @@ package at.fhtw.swen3.gps.service.impl;
 import at.fhtw.swen3.gps.HttpDataHandler;
 import at.fhtw.swen3.gps.service.GeoEncodingService;
 import at.fhtw.swen3.services.dto.GeoCoordinate;
-import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;
 
 import java.io.IOException;
-import java.net.URL;
 import java.net.URLEncoder;
 
 
 @Slf4j
-public class BingEncodingProxy implements GeoEncodingService {
+public class OpenStreetMapEncodingProxy implements GeoEncodingService {
 
     @Override
     public GeoCoordinate encodeAddress(String addr) {
