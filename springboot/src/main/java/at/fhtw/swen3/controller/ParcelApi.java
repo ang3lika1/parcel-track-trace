@@ -39,7 +39,7 @@ import javax.annotation.Generated;
 public interface ParcelApi {
 
     @Autowired
-    private HopArrivalService hopArrivalservice;
+    //private HopArrivalService hopArrivalservice;
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
@@ -73,7 +73,7 @@ public interface ParcelApi {
     default ResponseEntity<Void> reportParcelDelivery(
         @Pattern(regexp = "^[A-Z0-9]{9}$") @Parameter(name = "trackingId", description = "The tracking ID of the parcel. E.g. PYJRB4HZ6 ", required = true) @PathVariable("trackingId") String trackingId
     ) {
-        hopArrivalService.reportDelivery(trackingId, "trackingId");
+        //hopArrivalService.reportDelivery(trackingId, "trackingId");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
