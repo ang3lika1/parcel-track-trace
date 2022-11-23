@@ -9,6 +9,7 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 
 
 import javax.annotation.Generated;
@@ -19,6 +20,7 @@ import javax.annotation.Generated;
 
 
 @JsonTypeName("warehouse")
+@Builder
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
 public class Warehouse extends Hop {
 
