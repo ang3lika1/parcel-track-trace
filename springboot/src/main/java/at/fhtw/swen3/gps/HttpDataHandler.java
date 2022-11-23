@@ -13,18 +13,13 @@ import java.net.URL;
 
 @Slf4j
 public class HttpDataHandler {
-    public static JsonNode get(URL url) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readTree(url);
-    }
-
     private static JsonNode getJsonObj(String json) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readTree(json);
     }
 
     public static double getDoubleFromJson(String json, String gets) throws JsonProcessingException {
-        log.info("json: " + getJsonObj(json).findParent(gets));
+        //log.info("json: " + getJsonObj(json).findParent(gets));
         return getJsonObj(json).findParent(gets).get(gets).asDouble();
     }
 
@@ -35,16 +30,14 @@ public class HttpDataHandler {
             connection = (HttpURLConnection) realUrl.openConnection();
             connection.setRequestMethod("GET");
             StringBuilder stringBuilder;
-            log.info(realUrl.toString());
 
             int status = connection.getResponseCode();
-            log.info("code: " + status);
+            log.info("http response code: " + status);
 
             try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
                 String line;
                 stringBuilder = new StringBuilder();
                 while ((line = in.readLine()) != null) {
-                    log.info("line: " + line.toString());
                     stringBuilder.append(line);
                     stringBuilder.append(System.lineSeparator());
                 }
@@ -55,5 +48,4 @@ public class HttpDataHandler {
             connection.disconnect();
         }
     }
-
 }

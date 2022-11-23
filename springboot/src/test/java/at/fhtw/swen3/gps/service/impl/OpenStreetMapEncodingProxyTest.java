@@ -15,7 +15,7 @@ class OpenStreetMapEncodingProxyTest {
     void encodeAddressTrue() throws UnsupportedEncodingException {
         String testAddress = "Engerthstrasse+228";
         GeoCoordinate geocoordinate = proxy.encodeAddress(testAddress);
-        log.info("test: lat= " + geocoordinate.getLat() + "lon= " + geocoordinate.getLon());
+        log.info("test - lat:" + geocoordinate.getLat() + ", lon:" + geocoordinate.getLon());
         assertEquals(geocoordinate.getLat(), 48.2163914);
         assertEquals(geocoordinate.getLon(), 16.4141428);
     }
