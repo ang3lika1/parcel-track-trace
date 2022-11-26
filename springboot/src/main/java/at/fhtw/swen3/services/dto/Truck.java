@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
 
 
 import javax.annotation.Generated;
@@ -18,7 +20,9 @@ import javax.annotation.Generated;
 
 
 @JsonTypeName("truck")
-@Builder
+@SuperBuilder
+//@Builder
+//@EqualsAndHashCode(callSuper = true)
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
 public class Truck extends Hop {
 
@@ -27,6 +31,7 @@ public class Truck extends Hop {
 
   @JsonProperty("numberPlate")
   private String numberPlate;
+
 
   public Truck regionGeoJson(String regionGeoJson) {
     this.regionGeoJson = regionGeoJson;

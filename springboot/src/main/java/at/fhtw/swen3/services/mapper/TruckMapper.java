@@ -6,7 +6,8 @@ import at.fhtw.swen3.services.dto.Truck;
 public class TruckMapper extends AbstractMapper<TruckEntity, Truck>{
     @Override
     public Truck mapToTarget(TruckEntity entity) {
-        return Truck.builder().regionGeoJson(entity.getRegionGeoJson()).numberPlate(entity.getNumberPlate()).build();
+       return Truck.builder().regionGeoJson(entity.getRegionGeoJson()).numberPlate(entity.getNumberPlate()).build();
+        //return Truck.builder().locationCoordinates(entity.getLocationCoordinates()).numberPlate(entity.getNumberPlate()).build();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package at.fhtw.swen3.persistence.repositories;
 
+import at.fhtw.swen3.persistence.entities.GeoCoordinateEntity;
 import at.fhtw.swen3.persistence.entities.HopEntity;
 import at.fhtw.swen3.persistence.entities.WarehouseEntity;
 import at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity;
@@ -25,7 +26,8 @@ class WarehouseNextHopsRepositoryTest {
     @Autowired
     private WarehouseRepository warehouseRepository;
     private @Mock WarehouseEntity mockedWarehouse;
-    private @Mock HopEntity mockedHop;
+    //private @Mock HopEntity mockedHop;
+
 
    /* @Test
     public void should_find_all_warehouse_next_hops() {
@@ -50,6 +52,17 @@ class WarehouseNextHopsRepositoryTest {
 
     @Test
     public void should_update_warehouse_next_hop_by_id() {
+        GeoCoordinateEntity geoCoordinate =GeoCoordinateEntity.builder().lat(3493582346d).lon(345d).build();
+        WarehouseEntity mockedHop = WarehouseEntity.builder()
+                //attributes from superclass hop:
+                .hopType("warehouse")
+                .code("ABCD12")
+                .description("test description")
+                .processingDelayMins(55)
+                .locationName("Wien")
+                .locationCoordinates(geoCoordinate)
+                .level(2).nextHops(nextHops).build();   //from warehouse itself
+
         WarehouseNextHopsEntity warehouseNextHop1 = WarehouseNextHopsEntity.builder().traveltimeMins(320).hop(mockedHop).build();
         warehouseNextHopRepository.save(warehouseNextHop1);
 
