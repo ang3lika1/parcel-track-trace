@@ -14,8 +14,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-26T11:16:17+0100",
-
+    date = "2022-11-28T14:22:37+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 18.0.1.1 (Oracle Corporation)"
 )
 public class ParcelMapperImpl implements ParcelMapper {

@@ -34,10 +34,7 @@ public class SpringConfig {
     public ParcelMapper getParcelMapper() {
         return new ParcelMapperImpl();
     }
-    @Bean
-    public HopArrivalMapper getHopArrivalMapper() {
-        return new HopArrivalMapper();
-    }
+
 
     @Bean
     public RecipientService getRecipientService(RecipientMapper recipientMapper, Validator validator, RecipientRepository recipientRepository) {

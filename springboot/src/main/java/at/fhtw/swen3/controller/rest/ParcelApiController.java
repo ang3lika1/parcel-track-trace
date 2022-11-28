@@ -22,16 +22,8 @@ public class ParcelApiController implements ParcelApi {
 
     @Autowired
     private final ParcelService parcelService;
-
-    /*public ParcelApiController(
-            @org.springframework.beans.factory.annotation.Autowired(required = true) ParcelService parcelService) {
-        this.parcelService = parcelService;
-    }*/
-
     private final NativeWebRequest request;
 
-    @Autowired
-    private final ParcelService parcelService;
 
    @Override
     public Optional<NativeWebRequest> getRequest() {

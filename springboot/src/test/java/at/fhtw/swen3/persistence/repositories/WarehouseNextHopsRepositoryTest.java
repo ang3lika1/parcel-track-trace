@@ -54,7 +54,7 @@ class WarehouseNextHopsRepositoryTest {
         assertThat(nextHops).hasSize(3).contains(warehouseNextHop1, warehouseNextHop2, warehouseNextHop3);
     }*/
 
-    @Test
+    /*@Test
     public void should_update_warehouse_next_hop_by_id() {
         //GeoCoordinateEntity geoCoordinate =GeoCoordinateEntity.builder().lat(3493582346d).lon(345d).build();
         WarehouseEntity mockedHop = WarehouseEntity.builder()
@@ -85,6 +85,6 @@ class WarehouseNextHopsRepositoryTest {
 
         assertThat(checkWarehouseNextHop.getId()).isEqualTo(warehouseNextHop2.getId());
         assertThat(checkWarehouseNextHop.getTraveltimeMins()).isEqualTo(updatedWarehouseNextHop.getTraveltimeMins());
-    }
+    }*/
 
 }
