@@ -11,4 +11,5 @@ public class TruckServiceImpl implements TruckService {
     private final TruckMapper truckMapper;
     private final Validator validator;
     private final TruckRepository truckRepository;
+
 }
