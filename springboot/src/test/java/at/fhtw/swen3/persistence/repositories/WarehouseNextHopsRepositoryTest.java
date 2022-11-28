@@ -4,10 +4,12 @@ import at.fhtw.swen3.persistence.entities.GeoCoordinateEntity;
 import at.fhtw.swen3.persistence.entities.HopEntity;
 import at.fhtw.swen3.persistence.entities.WarehouseEntity;
 import at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
@@ -16,6 +18,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @Transactional
+@Slf4j
 class WarehouseNextHopsRepositoryTest {
     @Autowired
     private WarehouseNextHopsRepository warehouseNextHopRepository;
@@ -26,6 +29,7 @@ class WarehouseNextHopsRepositoryTest {
     @Autowired
     private WarehouseRepository warehouseRepository;
     private @Mock WarehouseEntity mockedWarehouse;
+    private @Mock GeoCoordinateEntity mockedGeoCoordinate;
     //private @Mock HopEntity mockedHop;
 
 
@@ -52,7 +56,7 @@ class WarehouseNextHopsRepositoryTest {
 
     @Test
     public void should_update_warehouse_next_hop_by_id() {
-        GeoCoordinateEntity geoCoordinate =GeoCoordinateEntity.builder().lat(3493582346d).lon(345d).build();
+        //GeoCoordinateEntity geoCoordinate =GeoCoordinateEntity.builder().lat(3493582346d).lon(345d).build();
         WarehouseEntity mockedHop = WarehouseEntity.builder()
                 //attributes from superclass hop:
                 .hopType("warehouse")
@@ -60,7 +64,7 @@ class WarehouseNextHopsRepositoryTest {
                 .description("test description")
                 .processingDelayMins(55)
                 .locationName("Wien")
-                .locationCoordinates(geoCoordinate)
+                .locationCoordinates(mockedGeoCoordinate)
                 .level(2).nextHops(nextHops).build();   //from warehouse itself
 
         WarehouseNextHopsEntity warehouseNextHop1 = WarehouseNextHopsEntity.builder().traveltimeMins(320).hop(mockedHop).build();
