@@ -1,14 +1,21 @@
 package at.fhtw.swen3.services.impl;
 
+import at.fhtw.swen3.persistence.entities.HopArrivalEntity;
 import at.fhtw.swen3.persistence.entities.ParcelEntity;
+import at.fhtw.swen3.persistence.repositories.HopArrivalRepository;
 import at.fhtw.swen3.persistence.repositories.ParcelRepository;
 import at.fhtw.swen3.services.ParcelService;
+import at.fhtw.swen3.services.dto.HopArrival;
 import at.fhtw.swen3.services.dto.NewParcelInfo;
+import at.fhtw.swen3.services.mapper.HopArrivalMapper;
 import at.fhtw.swen3.services.validation.Validator;
 import at.fhtw.swen3.services.dto.Parcel;
 import at.fhtw.swen3.services.dto.TrackingInformation;
 import at.fhtw.swen3.services.mapper.ParcelMapper;
 import lombok.RequiredArgsConstructor;
+
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @RequiredArgsConstructor
 public class ParcelServiceImpl implements ParcelService {
@@ -38,4 +45,5 @@ public class ParcelServiceImpl implements ParcelService {
     public TrackingInformation trackParcel(String trackingId) {
         return parcelMapper.toTrackingInfoDto(parcelRepository.findByTrackingId(trackingId));
     }
+
 }
