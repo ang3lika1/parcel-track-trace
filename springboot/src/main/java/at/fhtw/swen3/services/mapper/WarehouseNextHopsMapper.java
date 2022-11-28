@@ -14,6 +14,10 @@ public class WarehouseNextHopsMapper extends AbstractMapper<WarehouseNextHopsEnt
 
     @Override
     public WarehouseNextHopsEntity mapToSource(WarehouseNextHops dto) {
-        return WarehouseNextHopsEntity.builder().traveltimeMins(dto.getTraveltimeMins()).hop(hopMapper.mapToSource(dto.getHop())).warehouse(dto.getHop()).build();
+        return WarehouseNextHopsEntity.builder()
+                .traveltimeMins(dto.getTraveltimeMins())
+                .hop(hopMapper.mapToSource(dto.getHop()))
+                //.warehouse(dto.get())
+                .build();
     }
 }

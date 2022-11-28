@@ -1,5 +1,6 @@
 package at.fhtw.swen3.persistence.repositories;
 
+import at.fhtw.swen3.persistence.entities.GeoCoordinateEntity;
 import at.fhtw.swen3.persistence.entities.TruckEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,16 @@ class TruckRepositoryTest {
 
     @Test
     public void should_store_a_truck() {
-        TruckEntity truck = TruckEntity.builder().regionGeoJson("GeoJsonString").numberPlate("W-747200").build();
+        GeoCoordinateEntity geoCoordinate =GeoCoordinateEntity.builder().lat(3493582346d).lon(345d).build();
+        TruckEntity truck = TruckEntity.builder()
+                //attributes from superclass hop:
+                .hopType("truck")
+                .code("EFGH34")
+                .description("test description")
+                .processingDelayMins(55)
+                .locationName("Wien")
+                .locationCoordinates(geoCoordinate)
+                .regionGeoJson("GeoJsonString").numberPlate("W-747200").build();    //from truckentity itself
 
         TruckEntity createdTruck = truckRepository.save(truck);
         assertThat(createdTruck).hasFieldOrPropertyWithValue("regionGeoJson", "GeoJsonString");
