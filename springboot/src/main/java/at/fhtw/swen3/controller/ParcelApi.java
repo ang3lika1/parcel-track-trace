@@ -5,7 +5,10 @@
  */
 package at.fhtw.swen3.controller;
 
+import at.fhtw.swen3.SpringConfig;
+import at.fhtw.swen3.controller.rest.ParcelApiController;
 import at.fhtw.swen3.services.HopArrivalService;
+import at.fhtw.swen3.services.ParcelService;
 import at.fhtw.swen3.services.dto.Error;
 import at.fhtw.swen3.services.dto.NewParcelInfo;
 import at.fhtw.swen3.services.dto.Parcel;
@@ -16,6 +19,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +37,9 @@ import javax.annotation.Generated;
 @Tag(name = "parcel", description = "Operations for the logistics staff.")
 @RequestMapping("${openapi.parcelLogisticsService.base-path:}")
 public interface ParcelApi {
-    HopArrivalService hopArrivalService = null;
+
+    @Autowired
+    //private HopArrivalService hopArrivalservice;
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
@@ -67,7 +73,7 @@ public interface ParcelApi {
     default ResponseEntity<Void> reportParcelDelivery(
         @Pattern(regexp = "^[A-Z0-9]{9}$") @Parameter(name = "trackingId", description = "The tracking ID of the parcel. E.g. PYJRB4HZ6 ", required = true) @PathVariable("trackingId") String trackingId
     ) {
-        hopArrivalService.reportDelivery(trackingId, "trackingId");
+        //hopArrivalService.reportDelivery(trackingId, "trackingId");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

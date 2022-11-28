@@ -1,5 +1,6 @@
 package at.fhtw.swen3;
 
+import at.fhtw.swen3.controller.rest.ParcelApiController;
 import at.fhtw.swen3.persistence.entities.EntityValidator;
 import at.fhtw.swen3.persistence.repositories.*;
 import at.fhtw.swen3.services.*;
@@ -8,6 +9,8 @@ import at.fhtw.swen3.services.mapper.*;
 import at.fhtw.swen3.services.validation.Validator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Optional;
 
 @Configuration
 public class SpringConfig {
@@ -30,6 +33,10 @@ public class SpringConfig {
     @Bean
     public ParcelMapper getParcelMapper() {
         return new ParcelMapperImpl();
+    }
+    @Bean
+    public HopArrivalMapper getHopArrivalMapper() {
+        return new HopArrivalMapper();
     }
 
     @Bean
@@ -92,4 +99,5 @@ public class SpringConfig {
     public WarehouseMapper getWarehouseMapper() {
         return new WarehouseMapper();
     }
+
 }
