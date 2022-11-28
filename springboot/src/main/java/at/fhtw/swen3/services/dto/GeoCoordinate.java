@@ -7,6 +7,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+
 
 import javax.annotation.Generated;
 
@@ -15,7 +20,10 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("geoCoordinate")
+@Builder
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
+@Data
+@AllArgsConstructor
 public class GeoCoordinate {
 
   @JsonProperty("lat")

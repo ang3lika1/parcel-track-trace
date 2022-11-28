@@ -3,6 +3,7 @@ C:\Users\angel\Documents\fhtw\semester_5\SWKOM\parcel-track-trace\springboot\src
 C:\Users\angel\Documents\fhtw\semester_5\SWKOM\parcel-track-trace\springboot\src\test\java\at\fhtw\swen3\services\mapper\RecipientMapperTest.java
 C:\Users\angel\Documents\fhtw\semester_5\SWKOM\parcel-track-trace\springboot\src\test\java\at\fhtw\swen3\persistence\repositories\WarehouseNextHopsRepositoryTest.java
 C:\Users\angel\Documents\fhtw\semester_5\SWKOM\parcel-track-trace\springboot\src\test\java\at\fhtw\swen3\persistence\repositories\ParcelRepositoryTest.java
+C:\Users\angel\Documents\fhtw\semester_5\SWKOM\parcel-track-trace\springboot\src\test\java\at\fhtw\swen3\gps\service\impl\OpenStreetMapEncodingProxyTest.java
 C:\Users\angel\Documents\fhtw\semester_5\SWKOM\parcel-track-trace\springboot\src\test\java\at\fhtw\swen3\services\dto\RecipientTest.java
 C:\Users\angel\Documents\fhtw\semester_5\SWKOM\parcel-track-trace\springboot\src\test\java\at\fhtw\swen3\services\mapper\ParcelMapperTest.java
 C:\Users\angel\Documents\fhtw\semester_5\SWKOM\parcel-track-trace\springboot\src\test\java\at\fhtw\swen3\services\ParcelServiceImplTest.java

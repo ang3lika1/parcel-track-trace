@@ -1,5 +1,6 @@
 package at.fhtw.swen3.persistence.entities;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.time.OffsetDateTime;
 
 @Data
 @Entity
+@Builder
 @Table(name = "hop_arrival")
 public class HopArrivalEntity {
   @Id

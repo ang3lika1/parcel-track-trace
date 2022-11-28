@@ -1,1 +1,14 @@
 at\fhtw\swen3\OpenApiGeneratorApplicationTests.class
+at\fhtw\swen3\persistence\repositories\WarehouseRepositoryTest.class
+at\fhtw\swen3\persistence\repositories\RecipientRepositoryTest.class
+at\fhtw\swen3\persistence\repositories\ParcelRepositoryTest.class
+at\fhtw\swen3\persistence\repositories\TruckRepositoryTest.class
+at\fhtw\swen3\gps\service\impl\OpenStreetMapEncodingProxyTest.class
+at\fhtw\swen3\services\dto\RecipientTest.class
+at\fhtw\swen3\services\impl\ParcelApiControllerTest.class
+at\fhtw\swen3\services\ParcelServiceImplTest.class
+at\fhtw\swen3\persistence\repositories\WarehouseNextHopsRepositoryTest.class
+at\fhtw\swen3\persistence\repositories\HopRepositoryTest.class
+at\fhtw\swen3\services\dto\ParcelValidatorTest.class
+at\fhtw\swen3\services\mapper\ParcelMapperTest.class
+at\fhtw\swen3\services\mapper\RecipientMapperTest.class

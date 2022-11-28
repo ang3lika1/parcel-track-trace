@@ -8,7 +8,6 @@ import javax.validation.*;
 import java.util.Set;
 
 @Slf4j
-@Component
 public class EntityValidator {
 
     static ValidatorFactory getValidatorFactory() {
