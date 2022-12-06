@@ -1,6 +1,7 @@
 package at.fhtw.swen3.persistence.entities;
 
 
+import at.fhtw.swen3.persistence.repositories.HopArrivalRepository;
 import at.fhtw.swen3.services.dto.TrackingInformation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,4 +43,12 @@ public class ParcelEntity {
     private List<HopArrivalEntity> visitedHops;
     @OneToMany
     private List<HopArrivalEntity> futureHops;
+
+    public void addVisitedHop(HopArrivalEntity hopArrival) {
+        visitedHops.add(hopArrival);
+    }
+
+    public void removeFutureHop(HopArrivalEntity hopArrival) {
+        futureHops.remove(hopArrival);
+    }
 }
