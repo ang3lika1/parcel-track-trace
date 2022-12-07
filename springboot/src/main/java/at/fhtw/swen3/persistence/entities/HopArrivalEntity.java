@@ -18,8 +18,6 @@ import java.time.OffsetDateTime;
 @NoArgsConstructor
 @Builder
 @Table(name = "hop_arrival")
-@NoArgsConstructor
-@AllArgsConstructor
 public class HopArrivalEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
