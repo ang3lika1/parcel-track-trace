@@ -1,9 +1,6 @@
 package at.fhtw.swen3.persistence.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 import javax.persistence.*;
@@ -21,7 +18,8 @@ import java.time.OffsetDateTime;
 @NoArgsConstructor
 @Builder
 @Table(name = "hop_arrival")
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class HopArrivalEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

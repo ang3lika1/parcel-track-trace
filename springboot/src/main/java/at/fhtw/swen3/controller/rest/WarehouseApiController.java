@@ -18,20 +18,14 @@ import java.sql.SQLException;
 import java.util.Optional;
 import javax.annotation.Generated;
 @RequiredArgsConstructor
+@Slf4j
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
 @Controller
-@Slf4j
 public class WarehouseApiController implements WarehouseApi {
 
     @Autowired
     private final WarehouseService warehouseService;
     private final NativeWebRequest request;
-
-    @Autowired
-    public WarehouseApiController(WarehouseService warehouseService, NativeWebRequest request) {
-        this.warehouseService = warehouseService;
-        this.request = request;
-    }
 
     @Override
     public Optional<NativeWebRequest> getRequest() {
@@ -68,6 +62,4 @@ public class WarehouseApiController implements WarehouseApi {
         }
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
-
-
 }
