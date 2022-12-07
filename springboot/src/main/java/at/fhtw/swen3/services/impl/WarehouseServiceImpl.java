@@ -26,6 +26,7 @@ public class WarehouseServiceImpl implements WarehouseService {
     @Override
     public Hop getWarehouse(String code) throws SQLException {
         WarehouseEntity warehouseEntity = warehouseRepository.findByCode(code);
+        if(warehouseEntity == null) return null;
         return warehouseMapper.mapToTarget(warehouseEntity);
     }
 
