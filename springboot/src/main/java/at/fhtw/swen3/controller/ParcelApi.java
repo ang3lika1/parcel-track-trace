@@ -5,10 +5,6 @@
  */
 package at.fhtw.swen3.controller;
 
-import at.fhtw.swen3.SpringConfig;
-import at.fhtw.swen3.controller.rest.ParcelApiController;
-import at.fhtw.swen3.services.HopArrivalService;
-import at.fhtw.swen3.services.ParcelService;
 import at.fhtw.swen3.services.dto.Error;
 import at.fhtw.swen3.services.dto.NewParcelInfo;
 import at.fhtw.swen3.services.dto.Parcel;
@@ -24,13 +20,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.NativeWebRequest;
 
-import javax.validation.Valid;
-import javax.validation.constraints.*;
-import java.util.Optional;
 import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import java.util.Optional;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
 @Validated

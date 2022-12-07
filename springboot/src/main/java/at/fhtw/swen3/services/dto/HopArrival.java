@@ -29,7 +29,7 @@ public class HopArrival {
   private String code;
 
   @JsonProperty("description")
-  @Pattern(regexp = " ^[A-Za-z0-9\\s\\-]$", message = "must match postal code regex")
+  @Pattern(regexp = " ^[A-Za-z0-9\\s\\-]$", message = "text")
   private String description;
 
   @JsonProperty("dateTime")

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.time.OffsetDateTime;
@@ -20,6 +21,7 @@ import java.time.OffsetDateTime;
 @NoArgsConstructor
 @Builder
 @Table(name = "hop_arrival")
+@RequiredArgsConstructor
 public class HopArrivalEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
