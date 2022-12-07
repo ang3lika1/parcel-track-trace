@@ -1,9 +1,10 @@
 package at.fhtw.swen3.persistence.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
@@ -16,6 +17,8 @@ import java.time.OffsetDateTime;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Table(name = "hop_arrival")
 @RequiredArgsConstructor

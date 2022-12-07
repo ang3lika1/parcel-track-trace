@@ -24,4 +24,11 @@ public class HopArrivalServiceImpl implements HopArrivalService {
 
         return hopArrivalMapper.mapToTarget(hopArrivalRepository.save(hopArrivalEntity));
     }
+
+    @Override
+    public void reportHopArrival(String trackingId, String code) {
+
+    }
+
+
 }
