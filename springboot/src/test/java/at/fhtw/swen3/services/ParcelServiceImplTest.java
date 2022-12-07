@@ -10,6 +10,8 @@ import at.fhtw.swen3.services.dto.TrackingInformation;
 import at.fhtw.swen3.services.impl.ParcelServiceImpl;
 import at.fhtw.swen3.services.mapper.ParcelMapper;
 import at.fhtw.swen3.services.validation.Validator;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -18,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,6 +29,7 @@ import static org.mockito.ArgumentMatchers.any;
 
 @SpringBootTest
 @Transactional
+@Slf4j
 class ParcelServiceImplTest {
     private @Mock
     Recipient recipient;
@@ -84,7 +88,12 @@ class ParcelServiceImplTest {
     void trackParcel() {
         parcelRepository.save(parcelEntity);
 
-        TrackingInformation trackedParcel = parcelService.trackParcel(parcelEntity.getTrackingId());
+        TrackingInformation trackedParcel = null;
+        try {
+            trackedParcel = parcelService.trackParcel(parcelEntity.getTrackingId());
+        } catch (SQLException e) {
+            log.warn(e.getMessage());
+        }
 
         assertThat(trackedParcel).isEqualTo(parcelMapper.toTrackingInfoDto(parcelEntity));
     }

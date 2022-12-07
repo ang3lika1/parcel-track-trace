@@ -8,42 +8,38 @@ on:
       - completed
 
 # Deploy's Job
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: maven
-    
-    - name: Build with Maven
-      run: mvn -B package -DskipTests --file springboot/pom.xml
-    
-    - name: Upload Jar
-      # This uploads artifacts from your workflow allowing you to share data between jobs and store data once a workflow is complete.
-      uses: actions/upload-artifact@v3
-      with:
-        # set artifact name
-        name: parcel_trackn_trace_jar
-        # from this path
-        path: springboot/target/openapi-spring-1.22.1.jar
-    
+jobs:  
   deploy:
-    needs: build
 
     runs-on: ubuntu-latest
 
     steps:
-    - name: Download Jar
-      uses: actions/download-artifact@v3
-      with: 
-        name: parcel_trackn_trace_jar
+    - name: Download JAR
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        # Optional, workflow file name or ID
+        # If not specified, will be inferred from run_id (if run_id is specified), or will be the current workflow
+        workflow: build.yml
+        # Optional, uploaded artifact name,
+        # will download all artifacts if not specified
+        # and extract them into respective subdirectories
+        # https://github.com/actions/download-artifact#download-all-artifacts
+        name: parcel_trackn_trace_jar    
+        # Optional, check the workflow run to whether it has an artifact
+        # then will get the last available artifact from the previous workflow
+        # default false, just try to download from the last one
+        check_artifacts:  false
+        # Optional, search for the last workflow run whose stored an artifact named as in `name` input
+        # default false
+        search_artifacts: false
+        # Optional, choose to skip unpacking the downloaded artifact(s)
+        # default false
+        skip_unpack: false
+        # Optional, choose how to exit the action if no artifact is found
+        # can be one of:
+        #  "fail", "warn", "ignore"
+        # default fail
+        if_no_artifact_found: fail
 
     # Deploy the artifact (JAR) into AWS Beanstalk
     - name: Deploy to EB
@@ -53,39 +49,34 @@ jobs:
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws_session_token: ${{ secrets.AWS_SESSION_TOKEN }}
         use_existing_version_if_available: false
-        application_name: Parcel Track'n Trace
+        application_name: parcel-trackn-trace
         environment_name: Parceltrackntrace-env
         version_label: ${{github.SHA}}
         region: us-east-1
         deployment_package: openapi-spring-1.22.1.jar
 
-
-      #steps:       
-    #  - name: Download JAR
-    #  
-    #    uses: dawidd6/action-download-artifact@v2
-    #    with:
-    #      # Optional, workflow file name or ID
-    #      # If not specified, will be inferred from run_id (if run_id is specified), or will be the current workflow
-    #      workflow: build.yml
-    #      # Optional, uploaded artifact name,
-    #      # will download all artifacts if not specified
-    #      # and extract them into respective subdirectories
-    #      # https://github.com/actions/download-artifact#download-all-artifacts
-    #      name: parcel_trackn_trace_jar    
-    #      # Optional, check the workflow run to whether it has an artifact
-    #      # then will get the last available artifact from the previous workflow
-    #      # default false, just try to download from the last one
-    #      check_artifacts:  false
-    #      # Optional, search for the last workflow run whose stored an artifact named as in `name` input
-    #      # default false
-    #      search_artifacts: false
-    #      # Optional, choose to skip unpacking the downloaded artifact(s)
-    #      # default false
-    #      skip_unpack: false
-    #      # Optional, choose how to exit the action if no artifact is found
-    #      # can be one of:
-    #      #  "fail", "warn", "ignore"
-    #      # default fail
-    #      if_no_artifact_found: fail
     
+#build:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#    - uses: actions/checkout@v3
+#    
+#    - name: Set up JDK 11
+#      uses: actions/setup-java@v3
+#      with:
+#        java-version: '11'
+#        distribution: 'temurin'
+#        cache: maven
+#    
+#    - name: Build with Maven
+#      run: mvn -B package -DskipTests --file springboot/pom.xml
+#    
+#    - name: Upload Jar
+#      # This uploads artifacts from your workflow allowing you to share data between jobs and store data once a workflow is complete.
+#      uses: actions/upload-artifact@v3
+#      with:
+#        # set artifact name
+#        name: parcel_trackn_trace_jar
+#        # from this path
+#        path: springboot/target/openapi-spring-1.22.1.jar
