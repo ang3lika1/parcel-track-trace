@@ -79,16 +79,16 @@ public class ParcelApiController implements ParcelApi {
 
     @Override
     public ResponseEntity<Void> reportParcelDelivery(String trackingId) {
-        return ParcelApi.super.reportParcelDelivery(trackingId);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<TrackingInformation> trackParcel(String trackingId) {
-        return ParcelApi.super.trackParcel(trackingId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<NewParcelInfo> transitionParcel(String trackingId, Parcel parcel) {
-        return ParcelApi.super.transitionParcel(trackingId, parcel);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
