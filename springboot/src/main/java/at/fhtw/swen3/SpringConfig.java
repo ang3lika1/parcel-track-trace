@@ -85,13 +85,18 @@ public class SpringConfig {
     }
 
     @Bean
-    public WarehouseService getWarehouseService(WarehouseMapper warehouseMapper, Validator validator, WarehouseRepository warehouseRepository) {
-        return new WarehouseServiceImpl(warehouseMapper, validator, warehouseRepository) {
+    public WarehouseNextHopsMapper getWareHouseNextHopsMapper(HopMapper hopMapper) {
+        return new WarehouseNextHopsMapper(hopMapper);
+    }
+
+    @Bean
+    public WarehouseService getWarehouseService(WarehouseMapper warehouseMapper, Validator validator, WarehouseRepository warehouseRepository, WarehouseNextHopsRepository warehouseNextHopsRepository) {
+        return new WarehouseServiceImpl(warehouseMapper, validator, warehouseRepository, warehouseNextHopsRepository) {
         };
     }
     @Bean
-    public WarehouseMapper getWarehouseMapper() {
-        return new WarehouseMapper();
+    public WarehouseMapper getWarehouseMapper(WarehouseNextHopsMapper warehouseNextHopsMapper, GeoCoordinateMapper geoCoordinateMapper) {
+        return new WarehouseMapper(warehouseNextHopsMapper, geoCoordinateMapper);
     }
 
 }

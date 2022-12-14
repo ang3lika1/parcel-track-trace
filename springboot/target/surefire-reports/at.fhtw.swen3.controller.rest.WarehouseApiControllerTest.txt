@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: at.fhtw.swen3.controller.rest.WarehouseApiControllerTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 5.636 s <<< FAILURE! - in at.fhtw.swen3.controller.rest.WarehouseApiControllerTest
+importWarehouses  Time elapsed: 0.14 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "java.util.Collection.forEach(java.util.function.Consumer)" because "sources" is null
+	at at.fhtw.swen3.controller.rest.WarehouseApiControllerTest.importWarehouses(WarehouseApiControllerTest.java:96)
+
+exportWarehouses  Time elapsed: 0.031 s  <<< ERROR!
+org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops, could not initialize proxy - no Session
+	at at.fhtw.swen3.controller.rest.WarehouseApiControllerTest.exportWarehouses(WarehouseApiControllerTest.java:35)
+

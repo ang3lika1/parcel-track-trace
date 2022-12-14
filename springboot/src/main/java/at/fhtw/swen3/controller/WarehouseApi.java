@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Generated;
 
@@ -36,11 +37,11 @@ public interface WarehouseApi {
     }
 
     /**
-     * GET /warehouse : Exports the hierarchy of Warehouse and Truck objects. 
+     * GET /warehouse : Exports the hierarchy of Warehouse and Truck objects.
      *
      * @return Successful response (status code 200)
-     *         or The operation failed due to an error. (status code 400)
-     *         or No hierarchy loaded yet. (status code 404)
+     * or The operation failed due to an error. (status code 400)
+     * or No hierarchy loaded yet. (status code 404)
      */
     @Operation(
         operationId = "exportWarehouses",
@@ -61,7 +62,7 @@ public interface WarehouseApi {
         value = "/warehouse",
         produces = { "application/json" }
     )
-    default ResponseEntity<Warehouse> exportWarehouses(
+    default ResponseEntity<List<Warehouse>> exportWarehouses(
         
     ) {
         getRequest().ifPresent(request -> {

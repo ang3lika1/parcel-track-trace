@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.context.request.NativeWebRequest;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Generated;
 @RequiredArgsConstructor
@@ -33,9 +34,16 @@ public class WarehouseApiController implements WarehouseApi {
     }
 
     @Override
-    public ResponseEntity<Warehouse> exportWarehouses() {
-        warehouseService.exportWarehouses();
-        return new ResponseEntity<Warehouse>(HttpStatus.NOT_IMPLEMENTED);
+    public ResponseEntity<List<Warehouse>> exportWarehouses() {
+        List<Warehouse> warehouseHierarchy;
+        try {
+            warehouseHierarchy = warehouseService.exportWarehouses();
+        }catch (DataAccessException e) {
+            log.warn(e.getMessage());
+            return new ResponseEntity<List<Warehouse>>(HttpStatus.BAD_REQUEST);
+        }
+        if(warehouseHierarchy == null) return new ResponseEntity<List<Warehouse>>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<List<Warehouse>>(warehouseHierarchy,HttpStatus.OK);
     }
 
     @Override
