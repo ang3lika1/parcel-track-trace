@@ -2,6 +2,8 @@ package at.fhtw.swen3.controller.rest;
 
 
 import at.fhtw.swen3.controller.WarehouseApi;
+import at.fhtw.swen3.services.HopService;
+import at.fhtw.swen3.services.ResetService;
 import at.fhtw.swen3.services.WarehouseService;
 import at.fhtw.swen3.services.dto.Hop;
 import at.fhtw.swen3.services.dto.Warehouse;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.context.request.NativeWebRequest;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Generated;
 @RequiredArgsConstructor
@@ -25,6 +28,8 @@ public class WarehouseApiController implements WarehouseApi {
 
     @Autowired
     private final WarehouseService warehouseService;
+    @Autowired
+    private final HopService hopService;
     private final NativeWebRequest request;
 
     @Override
@@ -34,15 +39,22 @@ public class WarehouseApiController implements WarehouseApi {
 
     @Override
     public ResponseEntity<Warehouse> exportWarehouses() {
-        warehouseService.exportWarehouses();
-        return new ResponseEntity<Warehouse>(HttpStatus.NOT_IMPLEMENTED);
+        Warehouse warehouseHierarchy;
+        try {
+            warehouseHierarchy = warehouseService.exportWarehouses();
+        }catch (DataAccessException e) {
+            log.warn(e.getMessage());
+            return new ResponseEntity<Warehouse>(HttpStatus.BAD_REQUEST);
+        }
+        if(warehouseHierarchy == null) return new ResponseEntity<Warehouse>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<Warehouse>(warehouseHierarchy,HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Hop> getWarehouse(String code) {
         Hop hop = null;
         try {
-            hop = warehouseService.getWarehouse(code);
+            hop = hopService.getWarehouse(code);
         } catch (SQLException e) {
             log.warn(e.getSQLState(), e.getMessage());
             return new ResponseEntity<Hop>(HttpStatus.BAD_REQUEST);

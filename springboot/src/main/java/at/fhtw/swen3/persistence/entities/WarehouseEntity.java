@@ -13,16 +13,12 @@ import java.util.List;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-//@Table(name = "warehouse")
 public class WarehouseEntity extends HopEntity{
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;*/
-
     @Column
     private Integer level;
 
-    //@OneToMany(mappedBy = "warehouse")
-    @OneToMany(mappedBy = "hop")
+    //@OneToMany(mappedBy = "warehouseSuper")
+    @OneToMany
+    @JoinColumn(name="fk_warehouse")
     private List<WarehouseNextHopsEntity> nextHops = new ArrayList<>();
 }
