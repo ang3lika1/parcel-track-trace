@@ -89,6 +89,14 @@ public class ParcelApiController implements ParcelApi {
 
     @Override
     public ResponseEntity<NewParcelInfo> transitionParcel(String trackingId, Parcel parcel) {
-        return new ResponseEntity<>(HttpStatus.OK);
+       ResponseEntity<NewParcelInfo> response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        try {
+            response = parcelService.saveExistingParcel(trackingId, parcel);
+        } catch (SQLException e) {
+            log.warn(e.getMessage());
+            return response;
+        }
+
+        return response;
     }
 }

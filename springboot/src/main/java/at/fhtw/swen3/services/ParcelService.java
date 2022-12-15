@@ -4,8 +4,10 @@ import at.fhtw.swen3.persistence.entities.HopArrivalEntity;
 import at.fhtw.swen3.persistence.entities.HopEntity;
 import at.fhtw.swen3.persistence.entities.ParcelEntity;
 import at.fhtw.swen3.services.dto.HopArrival;
+import at.fhtw.swen3.services.dto.NewParcelInfo;
 import at.fhtw.swen3.services.dto.Parcel;
 import at.fhtw.swen3.services.dto.TrackingInformation;
+import org.springframework.http.ResponseEntity;
 
 import java.sql.SQLException;
 
@@ -18,5 +20,7 @@ public interface ParcelService {
     ParcelEntity getParcel(String trackingId) throws SQLException;
 
     void changeHopArrival(ParcelEntity parcel, HopArrivalEntity hopArrival, HopEntity hop);
+
+    public ResponseEntity<NewParcelInfo> saveExistingParcel(String trackingId, Parcel parcel) throws SQLException;
 
 }

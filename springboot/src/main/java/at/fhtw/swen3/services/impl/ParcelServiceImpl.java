@@ -14,12 +14,17 @@ import at.fhtw.swen3.services.dto.Parcel;
 import at.fhtw.swen3.services.dto.TrackingInformation;
 import at.fhtw.swen3.services.mapper.ParcelMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
+import javax.validation.ConstraintViolationException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 
+@Slf4j
 @RequiredArgsConstructor
 public class ParcelServiceImpl implements ParcelService {
 
@@ -49,7 +54,13 @@ public class ParcelServiceImpl implements ParcelService {
 
     @Override
     public TrackingInformation trackParcel(String trackingId) throws SQLException {
-        return parcelMapper.toTrackingInfoDto(parcelRepository.findByTrackingId(trackingId));
+        ParcelEntity parcelEntity = parcelRepository.findByTrackingId(trackingId);
+        if (parcelEntity == null) {
+            log.error("ölaksde");
+            return null;
+        }
+
+        return parcelMapper.toTrackingInfoDto(parcelEntity);
     }
 
     public ParcelEntity getParcel(String trackingId) throws SQLException{
@@ -76,6 +87,27 @@ public class ParcelServiceImpl implements ParcelService {
         }
 
         parcelRepository.save(parcel);
+    }
+
+    public ResponseEntity<NewParcelInfo> saveExistingParcel(String trackingId, Parcel parcel) throws SQLException {
+        NewParcelInfo newParcelInfo = NewParcelInfo.builder().trackingId(trackingId).build();
+        try {
+            validator.validate(newParcelInfo);
+            validator.validate(parcel);
+        } catch (ConstraintViolationException e) {
+            log.warn(e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+
+        ParcelEntity parcelEntity = parcelRepository.findByTrackingId(trackingId);
+        if (parcelEntity != null) {
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+        }
+
+        parcelEntity = parcelMapper.from(parcel, newParcelInfo, TrackingInformation.builder().state(TrackingInformation.StateEnum.PICKUP).build());
+
+        parcelRepository.save(parcelEntity);
+        return new ResponseEntity<>(newParcelInfo, HttpStatus.OK);
     }
 
 }
