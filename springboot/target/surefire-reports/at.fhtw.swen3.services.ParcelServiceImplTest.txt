@@ -1,14 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: at.fhtw.swen3.services.ParcelServiceImplTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.386 s <<< FAILURE! - in at.fhtw.swen3.services.ParcelServiceImplTest
-trackParcel  Time elapsed: 0 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
-Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
-
-saveNewParcel  Time elapsed: 0 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
-Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
-
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.048 s - in at.fhtw.swen3.services.ParcelServiceImplTest

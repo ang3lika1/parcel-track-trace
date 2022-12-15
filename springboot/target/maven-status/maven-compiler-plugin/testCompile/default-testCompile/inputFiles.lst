@@ -11,5 +11,6 @@ C:\Users\angel\Documents\fhtw\semester_5\SWKOM\parcel-track-trace\springboot\src
 C:\Users\angel\Documents\fhtw\semester_5\SWKOM\parcel-track-trace\springboot\src\test\java\at\fhtw\swen3\controller\rest\WarehouseApiControllerTest.java
 C:\Users\angel\Documents\fhtw\semester_5\SWKOM\parcel-track-trace\springboot\src\test\java\at\fhtw\swen3\services\dto\ParcelValidatorTest.java
 C:\Users\angel\Documents\fhtw\semester_5\SWKOM\parcel-track-trace\springboot\src\test\java\at\fhtw\swen3\persistence\repositories\TruckRepositoryTest.java
+C:\Users\angel\Documents\fhtw\semester_5\SWKOM\parcel-track-trace\springboot\src\test\java\at\fhtw\swen3\services\impl\ResetServiceImplTest.java
 C:\Users\angel\Documents\fhtw\semester_5\SWKOM\parcel-track-trace\springboot\src\test\java\at\fhtw\swen3\persistence\repositories\RecipientRepositoryTest.java
 C:\Users\angel\Documents\fhtw\semester_5\SWKOM\parcel-track-trace\springboot\src\test\java\at\fhtw\swen3\services\impl\ParcelApiControllerTest.java

@@ -3,6 +3,7 @@ at\fhtw\swen3\persistence\repositories\WarehouseRepositoryTest.class
 at\fhtw\swen3\persistence\repositories\RecipientRepositoryTest.class
 at\fhtw\swen3\persistence\repositories\ParcelRepositoryTest.class
 at\fhtw\swen3\persistence\repositories\TruckRepositoryTest.class
+at\fhtw\swen3\services\impl\ResetServiceImplTest.class
 at\fhtw\swen3\gps\service\impl\OpenStreetMapEncodingProxyTest.class
 at\fhtw\swen3\services\dto\RecipientTest.class
 at\fhtw\swen3\controller\rest\WarehouseApiControllerTest.class

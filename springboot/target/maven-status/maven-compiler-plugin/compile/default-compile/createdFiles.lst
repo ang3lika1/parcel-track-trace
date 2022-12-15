@@ -18,6 +18,7 @@ at\fhtw\swen3\persistence\entities\ParcelEntity$ParcelEntityBuilder.class
 at\fhtw\swen3\persistence\entities\WarehouseEntity$WarehouseEntityBuilderImpl.class
 at\fhtw\swen3\persistence\entities\TruckEntity.class
 at\fhtw\swen3\services\dto\Hop$HopBuilder.class
+at\fhtw\swen3\services\impl\ResetServiceImpl.class
 at\fhtw\swen3\services\mapper\ParcelMapperImpl.class
 at\fhtw\swen3\services\dto\Parcel$ParcelBuilder.class
 at\fhtw\swen3\services\dto\Truck.class
@@ -26,6 +27,8 @@ at\fhtw\swen3\persistence\entities\EntityValidator.class
 at\fhtw\swen3\persistence\repositories\TruckRepository.class
 at\fhtw\swen3\persistence\entities\HopArrivalEntity$HopArrivalEntityBuilder.class
 at\fhtw\swen3\gps\service\GeoEncodingService.class
+at\fhtw\swen3\persistence\entities\TransferwarehouseEntity$1.class
+at\fhtw\swen3\persistence\entities\TransferwarehouseEntity$TransferwarehouseEntityBuilderImpl.class
 at\fhtw\swen3\services\dto\Transferwarehouse.class
 at\fhtw\swen3\persistence\entities\HopArrivalEntity.class
 at\fhtw\swen3\services\mapper\RecipientMapper.class
@@ -50,6 +53,7 @@ at\fhtw\swen3\services\mapper\TruckMapper.class
 at\fhtw\swen3\SpringConfig$2.class
 at\fhtw\swen3\services\dto\TrackingInformation.class
 at\fhtw\swen3\services\validation\Validator.class
+at\fhtw\swen3\persistence\entities\TransferwarehouseEntity.class
 at\fhtw\swen3\persistence\entities\TruckEntity$1.class
 at\fhtw\swen3\gps\service\impl\OpenStreetMapEncodingProxy.class
 at\fhtw\swen3\persistence\entities\GeoCoordinateEntity$GeoCoordinateEntityBuilder.class
@@ -65,6 +69,7 @@ at\fhtw\swen3\persistence\entities\HopEntity$HopEntityBuilder.class
 at\fhtw\swen3\services\dto\TrackingInformation$StateEnum.class
 at\fhtw\swen3\services\WarehouseService.class
 at\fhtw\swen3\services\impl\ParcelServiceImpl.class
+at\fhtw\swen3\persistence\repositories\TransferwarehouseRepository.class
 at\fhtw\swen3\services\dto\HopArrival$HopArrivalBuilder.class
 at\fhtw\swen3\services\mapper\HopArrivalMapper.class
 at\fhtw\swen3\services\dto\Hop$1.class
@@ -73,6 +78,7 @@ at\fhtw\swen3\services\mapper\WarehouseNextHopsMapper.class
 at\fhtw\swen3\persistence\repositories\WarehouseNextHopsRepository.class
 at\fhtw\swen3\services\dto\Error.class
 at\fhtw\swen3\services\dto\Recipient$RecipientBuilder.class
+at\fhtw\swen3\persistence\entities\TransferwarehouseEntity$TransferwarehouseEntityBuilder.class
 at\fhtw\swen3\services\dto\WarehouseNextHops$WarehouseNextHopsBuilder.class
 at\fhtw\swen3\services\dto\TrackingInformation$TrackingInformationBuilder.class
 at\fhtw\swen3\persistence\entities\WarehouseNextHopsEntity$WarehouseNextHopsEntityBuilder.class
@@ -104,6 +110,7 @@ at\fhtw\swen3\OpenApiGeneratorApplication.class
 at\fhtw\swen3\controller\rest\ParcelApiController.class
 at\fhtw\swen3\persistence\entities\HopEntity.class
 at\fhtw\swen3\persistence\entities\RecipientEntity.class
+at\fhtw\swen3\services\ResetService.class
 at\fhtw\swen3\services\dto\Hop.class
 at\fhtw\swen3\services\HopService.class
 at\fhtw\swen3\SpringConfig$5.class
