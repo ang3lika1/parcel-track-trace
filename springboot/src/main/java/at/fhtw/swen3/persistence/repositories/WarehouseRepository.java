@@ -10,4 +10,5 @@ import java.sql.SQLException;
 @Repository
 public interface WarehouseRepository extends JpaRepository<WarehouseEntity, Long> {
     WarehouseEntity findByCode(String code) throws SQLException;
+    WarehouseEntity findFirstByIdIsNotNullOrderByNextHops();
 }

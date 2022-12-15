@@ -22,9 +22,7 @@ public class WarehouseNextHopsEntity {
     private Integer traveltimeMins;
     @OneToOne(cascade = CascadeType.ALL)
     private HopEntity hop;
-//    @ManyToOne
-//    @JoinColumn(name="fk_warehouse")
-//    private WarehouseEntity warehouse;
-
-
+    @ManyToOne
+    @JoinColumn(name="fk_warehouse", insertable = false, updatable = false)
+    private WarehouseEntity warehouseSuper;
 }
