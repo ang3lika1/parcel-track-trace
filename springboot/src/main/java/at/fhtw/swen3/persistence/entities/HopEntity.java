@@ -11,6 +11,8 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @SuperBuilder
@@ -18,6 +20,7 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 @Entity
 @Table(name = "hop")
+@Inheritance
 public class HopEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,4 +45,5 @@ public class HopEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @NotNull @Valid
     private GeoCoordinateEntity locationCoordinates;
+
 }

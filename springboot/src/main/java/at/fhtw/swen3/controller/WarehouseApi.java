@@ -62,7 +62,7 @@ public interface WarehouseApi {
         value = "/warehouse",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<Warehouse>> exportWarehouses(
+    default ResponseEntity<Warehouse> exportWarehouses(
         
     ) {
         getRequest().ifPresent(request -> {

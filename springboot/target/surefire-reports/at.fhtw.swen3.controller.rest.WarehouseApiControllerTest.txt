@@ -1,12 +1,24 @@
 -------------------------------------------------------------------------------
 Test set: at.fhtw.swen3.controller.rest.WarehouseApiControllerTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 5.636 s <<< FAILURE! - in at.fhtw.swen3.controller.rest.WarehouseApiControllerTest
-importWarehouses  Time elapsed: 0.14 s  <<< ERROR!
-java.lang.NullPointerException: Cannot invoke "java.util.Collection.forEach(java.util.function.Consumer)" because "sources" is null
-	at at.fhtw.swen3.controller.rest.WarehouseApiControllerTest.importWarehouses(WarehouseApiControllerTest.java:96)
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 3.385 s <<< FAILURE! - in at.fhtw.swen3.controller.rest.WarehouseApiControllerTest
+getWarehouse  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
 
-exportWarehouses  Time elapsed: 0.031 s  <<< ERROR!
-org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops, could not initialize proxy - no Session
-	at at.fhtw.swen3.controller.rest.WarehouseApiControllerTest.exportWarehouses(WarehouseApiControllerTest.java:35)
+importWarehouses  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
+
+exportWarehouses  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
+
+getRequest  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
 

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
@@ -35,8 +36,7 @@ class WarehouseApiControllerTest {
 
     @Test
     void exportWarehouses() {
-        ResponseEntity<List<Warehouse>> warehouseHierarchy = warehouseApiController.exportWarehouses();
-        System.out.println(warehouseHierarchy);
+        ResponseEntity<Warehouse> warehouseHierarchy = warehouseApiController.exportWarehouses();
         log.info(String.valueOf(warehouseHierarchy));
     }
 
@@ -48,13 +48,14 @@ class WarehouseApiControllerTest {
 
 
     @Test
+    @Commit
     void importWarehouses() {
         GeoCoordinate nextHopGC =GeoCoordinate.builder().lat(7582346d).lon(285d).build();
         Point point1 = Point.fromLngLat(nextHopGC.getLon(), nextHopGC.getLat());
 
         Truck hop1 = Truck.builder()
                 .regionGeoJson(String.valueOf(point1))
-                .hopType("truck 1")
+                .hopType("truck")
                 .code("ABCD12")
                 .description("next hop 1 of warehouse")
                 .processingDelayMins(200)
@@ -69,7 +70,7 @@ class WarehouseApiControllerTest {
 
         Truck hop2 = Truck.builder()
                 .regionGeoJson(String.valueOf(point1))
-                .hopType("truck 1")
+                .hopType("truck")
                 .code("EFGH34")
                 .description("next hop 2 of warehouse")
                 .processingDelayMins(56)
@@ -94,7 +95,9 @@ class WarehouseApiControllerTest {
                 .processingDelayMins(55)
                 .locationName("Wien")
                 .locationCoordinates(warehouseGC)
-                .level(2).nextHops(nextHops).build();
+                .level(2)
+                .nextHops(nextHops)
+                .build();
 
         ResponseEntity<Void> importedWarehouse = warehouseApiController.importWarehouses(warehouse);
         assertEquals(importedWarehouse, new ResponseEntity<>( HttpStatus.OK));

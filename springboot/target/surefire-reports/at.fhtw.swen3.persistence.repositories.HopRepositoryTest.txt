@@ -1,33 +1,39 @@
 -------------------------------------------------------------------------------
 Test set: at.fhtw.swen3.persistence.repositories.HopRepositoryTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 1.325 s <<< FAILURE! - in at.fhtw.swen3.persistence.repositories.HopRepositoryTest
-should_delete_tutorial_by_id  Time elapsed: 0.104 s  <<< FAILURE!
-java.lang.AssertionError: 
+Tests run: 7, Failures: 0, Errors: 7, Skipped: 0, Time elapsed: 1.854 s <<< FAILURE! - in at.fhtw.swen3.persistence.repositories.HopRepositoryTest
+should_delete_tutorial_by_id  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
 
-Expected size: 1 but was: 4 in:
-[WarehouseEntity(level=2, nextHops=[]),
-    WarehouseEntity(level=2, nextHops=[]),
-    WarehouseEntity(level=2, nextHops=[]),
-    HopEntity(id=248, hopType=testHopType 1, code=ABCD12, description=test description 1, processingDelayMins=55, locationName=Wien, locationCoordinates=GeoCoordinateEntity(id=249, lat=3.493582346E9, lon=345.0))]
-	at at.fhtw.swen3.persistence.repositories.HopRepositoryTest.should_delete_tutorial_by_id(HopRepositoryTest.java:171)
+should_update_hop_by_id  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
 
-should_find_all_hops  Time elapsed: 0.018 s  <<< FAILURE!
-java.lang.AssertionError: 
+should_find_all_hops  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
 
-Expected size: 2 but was: 5 in:
-[WarehouseEntity(level=2, nextHops=[]),
-    WarehouseEntity(level=2, nextHops=[]),
-    WarehouseEntity(level=2, nextHops=[]),
-    HopEntity(id=254, hopType=testHopType 1, code=ABCD12, description=test description 1, processingDelayMins=55, locationName=Wien, locationCoordinates=GeoCoordinateEntity(id=255, lat=3.493582346E9, lon=345.0)),
-    HopEntity(id=256, hopType=testHopType 2, code=ABCD12, description=test description 2, processingDelayMins=55, locationName=Wien, locationCoordinates=GeoCoordinateEntity(id=255, lat=3.493582346E9, lon=345.0))]
-	at at.fhtw.swen3.persistence.repositories.HopRepositoryTest.should_find_all_hops(HopRepositoryTest.java:75)
+should_delete_all_tutorials  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
 
-should_find_no_hops_if_repository_is_empty  Time elapsed: 0.014 s  <<< FAILURE!
-java.lang.AssertionError: 
+should_find_no_hops_if_repository_is_empty  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
 
-Expecting empty but was: [WarehouseEntity(level=2, nextHops=[]),
-    WarehouseEntity(level=2, nextHops=[]),
-    WarehouseEntity(level=2, nextHops=[])]
-	at at.fhtw.swen3.persistence.repositories.HopRepositoryTest.should_find_no_hops_if_repository_is_empty(HopRepositoryTest.java:29)
+should_store_a_hop  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
+
+should_find_hop_by_id  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity.warehouse_next_hop in at.fhtw.swen3.persistence.entities.WarehouseEntity.nextHops
 

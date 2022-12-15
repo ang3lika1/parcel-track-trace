@@ -17,6 +17,8 @@ public interface ParcelService {
 
     ParcelEntity getParcel(String trackingId) throws SQLException;
 
+    ParcelEntity reportParcelDelivery(String trackingId) throws SQLException;
+
     void changeHopArrival(ParcelEntity parcel, HopArrivalEntity hopArrival, HopEntity hop);
 
 }
