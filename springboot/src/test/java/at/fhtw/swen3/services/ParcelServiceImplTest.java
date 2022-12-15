@@ -4,13 +4,13 @@ import at.fhtw.swen3.persistence.entities.HopArrivalEntity;
 import at.fhtw.swen3.persistence.entities.ParcelEntity;
 import at.fhtw.swen3.persistence.entities.RecipientEntity;
 import at.fhtw.swen3.persistence.repositories.ParcelRepository;
+import at.fhtw.swen3.services.dto.NewParcelInfo;
 import at.fhtw.swen3.services.dto.Parcel;
 import at.fhtw.swen3.services.dto.Recipient;
 import at.fhtw.swen3.services.dto.TrackingInformation;
 import at.fhtw.swen3.services.impl.ParcelServiceImpl;
 import at.fhtw.swen3.services.mapper.ParcelMapper;
 import at.fhtw.swen3.services.validation.Validator;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,6 +18,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
@@ -31,24 +33,12 @@ import static org.mockito.ArgumentMatchers.any;
 @Transactional
 @Slf4j
 class ParcelServiceImplTest {
-    private @Mock
-    Recipient recipient;
-    private @Mock
-    Recipient senderDto;
-
     @Autowired
     private ParcelService parcelService;
-
-    @InjectMocks
-    private ParcelServiceImpl parcelServiceImpl;
-
-    @Mock
+    @Autowired
     private ParcelRepository parcelRepository;
-    @Mock
-    private Validator validator;
-    @Mock
+    @Autowired
     private ParcelMapper parcelMapper;
-
 
     private ParcelEntity parcelEntity;
     private Parcel parcel;
@@ -80,7 +70,6 @@ class ParcelServiceImplTest {
     @Test
     void saveNewParcel() {
         Parcel savedParcel = parcelService.saveNewParcel(parcel);
-        parcelServiceImpl.saveNewParcel(parcel);
         assertThat(savedParcel).isEqualTo(parcel);
     }
 
@@ -98,6 +87,21 @@ class ParcelServiceImplTest {
         assertThat(trackedParcel).isEqualTo(parcelMapper.toTrackingInfoDto(parcelEntity));
     }
 
+    @Test
+    void saveExistingParcelTrackingIdExists() throws SQLException {
+        parcelRepository.save(parcelEntity);
+        ParcelEntity parcelCheck = parcelRepository.findByTrackingId(parcelEntity.getTrackingId());
+        System.out.println(parcelCheck.getTrackingId());
+
+        ResponseEntity<NewParcelInfo> response = null;
+        try {
+            response = parcelService.saveExistingParcel(parcelEntity.getTrackingId(), parcel);
+        } catch (SQLException e) {
+            log.warn(e.getMessage());
+        }
+
+        assertThat(response).isEqualTo(new ResponseEntity<>(null, HttpStatus.CONFLICT));
+    }
 
     /*@Test
     void should_save_one_parcel() {
