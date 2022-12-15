@@ -1,6 +1,5 @@
 package at.fhtw.swen3;
 
-import at.fhtw.swen3.controller.rest.ParcelApiController;
 import at.fhtw.swen3.persistence.entities.EntityValidator;
 import at.fhtw.swen3.persistence.repositories.*;
 import at.fhtw.swen3.services.*;
@@ -9,8 +8,6 @@ import at.fhtw.swen3.services.mapper.*;
 import at.fhtw.swen3.services.validation.Validator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Optional;
 
 @Configuration
 public class SpringConfig {
@@ -88,13 +85,23 @@ public class SpringConfig {
     }
 
     @Bean
-    public WarehouseService getWarehouseService(WarehouseMapper warehouseMapper, Validator validator, WarehouseRepository warehouseRepository) {
-        return new WarehouseServiceImpl(warehouseMapper, validator, warehouseRepository) {
+    public WarehouseNextHopsMapper getWareHouseNextHopsMapper(HopMapper hopMapper) {
+        return new WarehouseNextHopsMapper(hopMapper);
+    }
+
+    @Bean
+    public WarehouseService getWarehouseService(WarehouseMapper warehouseMapper, Validator validator, WarehouseRepository warehouseRepository, WarehouseNextHopsRepository warehouseNextHopsRepository, ResetService resetService) {
+        return new WarehouseServiceImpl(warehouseMapper, validator, warehouseRepository, warehouseNextHopsRepository, resetService) {
         };
     }
     @Bean
-    public WarehouseMapper getWarehouseMapper() {
-        return new WarehouseMapper();
+    public WarehouseMapper getWarehouseMapper(WarehouseNextHopsMapper warehouseNextHopsMapper, GeoCoordinateMapper geoCoordinateMapper) {
+        return new WarehouseMapper(warehouseNextHopsMapper, geoCoordinateMapper);
+    }
+
+    @Bean
+    public ResetService getResetService(GeoCoordinateRepository geoCoordinateRepository, HopArrivalRepository hopArrivalRepository, HopRepository hopRepository, ParcelRepository parcelRepository, RecipientRepository recipientRepository, WarehouseNextHopsRepository warehouseNextHopsRepository){
+        return new ResetServiceImpl(geoCoordinateRepository, hopArrivalRepository, hopRepository, parcelRepository, recipientRepository, warehouseNextHopsRepository);
     }
 
 }

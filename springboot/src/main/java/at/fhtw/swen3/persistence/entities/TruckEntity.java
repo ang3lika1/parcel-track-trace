@@ -11,12 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-//@Table(name = "truck")
 public class TruckEntity extends HopEntity{
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
-    private Long id;*/
     @Column
     private String regionGeoJson;
     @Column

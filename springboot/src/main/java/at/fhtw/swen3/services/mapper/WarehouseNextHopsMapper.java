@@ -9,7 +9,10 @@ public class WarehouseNextHopsMapper extends AbstractMapper<WarehouseNextHopsEnt
     private final HopMapper hopMapper;
     @Override
     public WarehouseNextHops mapToTarget(WarehouseNextHopsEntity entity) {
-        return WarehouseNextHops.builder().traveltimeMins(entity.getTraveltimeMins()).hop(hopMapper.mapToTarget(entity.getHop())).build();
+        return WarehouseNextHops.builder()
+                .traveltimeMins(entity.getTraveltimeMins())
+                .hop(hopMapper.mapToTarget(entity.getHop()))
+                .build();
     }
 
     @Override
@@ -17,7 +20,6 @@ public class WarehouseNextHopsMapper extends AbstractMapper<WarehouseNextHopsEnt
         return WarehouseNextHopsEntity.builder()
                 .traveltimeMins(dto.getTraveltimeMins())
                 .hop(hopMapper.mapToSource(dto.getHop()))
-                //.warehouse(dto.get())
                 .build();
     }
 }

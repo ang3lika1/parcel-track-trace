@@ -17,6 +17,6 @@ public abstract class AbstractMapper<S, T> implements Mapper<S, T>{
     public List<S> mapToSource(Collection<T> targets) {
         List<S> sources = new ArrayList<>();
         targets.forEach(o -> sources.add(mapToSource(o)));
-        return null;
+        return sources;
     }
 }

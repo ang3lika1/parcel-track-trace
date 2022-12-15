@@ -31,7 +31,6 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = Truck.class, name = "truck"),
   @JsonSubTypes.Type(value = Warehouse.class, name = "warehouse")
 })
-
 @JsonTypeName("hop")
 @SuperBuilder
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
