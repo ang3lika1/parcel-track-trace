@@ -12,11 +12,13 @@ import at.fhtw.swen3.services.mapper.ParcelMapper;
 import at.fhtw.swen3.services.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import javax.validation.ConstraintViolationException;
 import java.sql.SQLException;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -25,18 +27,30 @@ public class ParcelServiceImpl implements ParcelService {
     private final Validator validator;
     private final ParcelRepository parcelRepository;
 
+    private String generateTrackingId() throws SQLException {
+        String newId;
+        do {
+            newId = RandomStringUtils.randomAlphanumeric(9).toUpperCase();
+        } while (parcelRepository.findByTrackingId(newId) != null);
+
+        return newId;
+    }
+
     @Override
     public Parcel saveNewParcel(Parcel parcel) {
         validator.validate(parcel);
         // TODO: create trackingID
+        String trackingId = null;
+        try {
+            trackingId = generateTrackingId();
+        } catch (SQLException e) {
+            log.error("error while creating tracking id: " + e.getMessage());
+        }
 
-        NewParcelInfo newParcelInfo = NewParcelInfo.builder().build();
+        NewParcelInfo newParcelInfo = NewParcelInfo.builder().trackingId(trackingId).build();
         TrackingInformation trackingInformation = TrackingInformation.builder().build();
         trackingInformation.setState(TrackingInformation.StateEnum.PICKUP);
 
-
-
-        //ParcelEntity parcelEntity = parcelMapper.from(parcel,null, null);
         ParcelEntity parcelEntity = parcelMapper.from(parcel, newParcelInfo, trackingInformation);
 
         parcelEntity = parcelRepository.save(parcelEntity);
