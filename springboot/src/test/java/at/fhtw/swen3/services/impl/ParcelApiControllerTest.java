@@ -33,7 +33,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ExtendWith(MockitoExtension.class)
+
 @SpringBootTest
 @Transactional
 @Slf4j
@@ -83,7 +83,6 @@ class ParcelApiControllerTest {
     }
 
     @Test
-    @Commit
     void submitParcel() {
         Parcel parcel = Parcel.builder()
                 .weight(0.6f)

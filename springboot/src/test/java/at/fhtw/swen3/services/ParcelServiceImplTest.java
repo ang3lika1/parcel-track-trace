@@ -8,14 +8,10 @@ import at.fhtw.swen3.services.dto.NewParcelInfo;
 import at.fhtw.swen3.services.dto.Parcel;
 import at.fhtw.swen3.services.dto.Recipient;
 import at.fhtw.swen3.services.dto.TrackingInformation;
-import at.fhtw.swen3.services.impl.ParcelServiceImpl;
 import at.fhtw.swen3.services.mapper.ParcelMapper;
-import at.fhtw.swen3.services.validation.Validator;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
@@ -27,7 +23,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 
 @SpringBootTest
 @Transactional
@@ -68,9 +63,18 @@ class ParcelServiceImplTest {
     }
 
     @Test
-    void saveNewParcel() {
-        Parcel savedParcel = parcelService.saveNewParcel(parcel);
-        assertThat(savedParcel).isEqualTo(parcel);
+    void saveNewParcel()  {
+        NewParcelInfo savedParcelInfo = parcelService.saveNewParcel(parcel);
+        ParcelEntity savedParcelEntity = null;
+        try {
+            savedParcelEntity = parcelRepository.findByTrackingId(savedParcelInfo.getTrackingId());
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+        }
+
+        assert savedParcelEntity != null;
+        assertThat(savedParcelInfo.getTrackingId()).isEqualTo(savedParcelEntity.getTrackingId());
+        assertThat(parcelMapper.toParcelDto(savedParcelEntity)).isEqualTo(parcel);
     }
 
     @Test
@@ -88,32 +92,23 @@ class ParcelServiceImplTest {
     }
 
     @Test
-    void saveExistingParcelTrackingIdExists() throws SQLException {
+    void saveExistingParcelTrackingIdExists() {
         parcelRepository.save(parcelEntity);
-        ParcelEntity parcelCheck = parcelRepository.findByTrackingId(parcelEntity.getTrackingId());
-        System.out.println(parcelCheck.getTrackingId());
+        try {
+            ParcelEntity parcelCheck = parcelRepository.findByTrackingId(parcelEntity.getTrackingId());
+            log.info(parcelCheck.getTrackingId());
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+        }
 
         ResponseEntity<NewParcelInfo> response = null;
         try {
             response = parcelService.saveExistingParcel(parcelEntity.getTrackingId(), parcel);
         } catch (SQLException e) {
-            log.warn(e.getMessage());
+            log.error(e.getMessage());
         }
 
         assertThat(response).isEqualTo(new ResponseEntity<>(null, HttpStatus.CONFLICT));
     }
 
-    /*@Test
-    void should_save_one_parcel() {
-        // Arrange
-        when(parcelRepository.save(any(ParcelEntity.class))).thenReturn(parcel);
-
-        // Act
-        parcelServiceImpl.saveNewParcel(parcelDto);
-
-        // Assert
-        //assertThat(actual).isEqualTo(parcelDto);
-        verify(parcelRepository, times(1)).save(any(ParcelEntity.class));
-        verifyNoMoreInteractions(parcelRepository);
-    }*/
 }

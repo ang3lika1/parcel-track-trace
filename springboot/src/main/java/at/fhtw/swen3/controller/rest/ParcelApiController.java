@@ -45,8 +45,8 @@ public class ParcelApiController implements ParcelApi {
 
     @Override
     public ResponseEntity<NewParcelInfo> submitParcel(Parcel parcel) {
-         parcelService.saveNewParcel(parcel);
-         return new ResponseEntity<>(HttpStatus.CREATED);
+         NewParcelInfo submittedParcelInfo = parcelService.saveNewParcel(parcel);
+         return new ResponseEntity<>(submittedParcelInfo, HttpStatus.CREATED);
     }
 
     @Override
