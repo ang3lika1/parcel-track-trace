@@ -18,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 
 import javax.validation.ConstraintViolationException;
 import java.sql.SQLException;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -37,9 +36,9 @@ public class ParcelServiceImpl implements ParcelService {
     }
 
     @Override
-    public Parcel saveNewParcel(Parcel parcel) {
+    public NewParcelInfo saveNewParcel(Parcel parcel) {
         validator.validate(parcel);
-        // TODO: create trackingID
+
         String trackingId = null;
         try {
             trackingId = generateTrackingId();
@@ -55,14 +54,15 @@ public class ParcelServiceImpl implements ParcelService {
 
         parcelEntity = parcelRepository.save(parcelEntity);
 
-        return parcelMapper.toParcelDto(parcelEntity);
+        return parcelMapper.toParcelInfoDto(parcelEntity);
     }
 
     @Override
     public TrackingInformation trackParcel(String trackingId) throws SQLException {
+        validator.validate(trackingId);
         ParcelEntity parcelEntity = parcelRepository.findByTrackingId(trackingId);
         if (parcelEntity == null) {
-            log.error("ölaksde");
+            log.warn("returned parcelEntity from DB while tracking parcel is null");
             return null;
         }
 

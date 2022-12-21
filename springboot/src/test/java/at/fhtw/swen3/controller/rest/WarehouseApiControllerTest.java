@@ -48,7 +48,6 @@ class WarehouseApiControllerTest {
 
 
     @Test
-    @Commit
     void importWarehouses() {
         GeoCoordinate nextHopGC =GeoCoordinate.builder().lat(7582346d).lon(285d).build();
         Point point1 = Point.fromLngLat(nextHopGC.getLon(), nextHopGC.getLat());
