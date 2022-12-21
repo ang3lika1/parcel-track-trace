@@ -17,7 +17,6 @@ public class WarehouseEntity extends HopEntity{
     @Column
     private Integer level;
 
-    //@OneToMany(mappedBy = "warehouseSuper")
     @OneToMany
     @JoinColumn(name="fk_warehouse")
     private List<WarehouseNextHopsEntity> nextHops = new ArrayList<>();

@@ -45,8 +45,8 @@ public class ParcelApiController implements ParcelApi {
 
     @Override
     public ResponseEntity<NewParcelInfo> submitParcel(Parcel parcel) {
-         parcelService.saveNewParcel(parcel);
-         return new ResponseEntity<>(HttpStatus.CREATED);
+         NewParcelInfo submittedParcelInfo = parcelService.saveNewParcel(parcel);
+         return new ResponseEntity<>(submittedParcelInfo, HttpStatus.CREATED);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class ParcelApiController implements ParcelApi {
         try {
             parcelEntity = parcelService.reportParcelDelivery(trackingId);
         } catch (SQLException e) {
-            log.warn(e.getMessage());
+            log.error(e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         if(parcelEntity==null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -93,7 +93,14 @@ public class ParcelApiController implements ParcelApi {
 
     @Override
     public ResponseEntity<TrackingInformation> trackParcel(String trackingId) {
-        return new ResponseEntity<>(HttpStatus.OK);
+        TrackingInformation trackingInformation = null;
+        try {
+            trackingInformation = parcelService.trackParcel(trackingId);
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+        }
+        if(trackingInformation == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(trackingInformation, HttpStatus.OK);
     }
 
     @Override
