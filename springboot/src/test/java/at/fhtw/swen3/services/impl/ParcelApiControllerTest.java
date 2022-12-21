@@ -46,6 +46,7 @@ class ParcelApiControllerTest {
     ParcelMapper parcelMapper;
 
     private ParcelEntity parcelEntity;
+    private Parcel parcel;
 
     @BeforeEach
     void setUp() {
@@ -62,6 +63,12 @@ class ParcelApiControllerTest {
                 .deliveryStatus(TrackingInformation.StateEnum.INTRANSPORT)
                 .visitedHops(fakeHops)
                 .futureHops(fakeHops)
+                .build();
+
+        parcel = Parcel.builder()
+                .weight(0.6f)
+                .recipient(Recipient.builder().name("recipientname").street("Landstraße 27a").postalCode("A-3500").city("Krems an der Donau").country("Austria").build())
+                .sender(Recipient.builder().name("sendername").street("Engerthstraße 228/6").postalCode("A-1020").city("Wien").country("Austria").build())
                 .build();
     }
 
@@ -84,16 +91,14 @@ class ParcelApiControllerTest {
 
     @Test
     void submitParcel() {
-        Parcel parcel = Parcel.builder()
-                .weight(0.6f)
-                .recipient(Recipient.builder().name("recipientname").street("Landstraße 27a").postalCode("A-3500").city("Krems an der Donau").country("Austria").build())
-                .sender(Recipient.builder().name("sendername").street("Engerthstraße 228/6").postalCode("A-1020").city("Wien").country("Austria").build())
-                .build();
         parcelApiController.submitParcel(parcel);
     }
 
     @Test
     void trackParcel() {
+        ParcelEntity parcelForTracking = parcelRepository.save(parcelEntity);
+        ResponseEntity<TrackingInformation> trackParcel = parcelApiController.trackParcel(parcelForTracking.getTrackingId());
+        System.out.println(trackParcel);
     }
 
     @Test

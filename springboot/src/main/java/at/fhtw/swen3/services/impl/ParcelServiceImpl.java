@@ -38,7 +38,7 @@ public class ParcelServiceImpl implements ParcelService {
     @Override
     public NewParcelInfo saveNewParcel(Parcel parcel) {
         validator.validate(parcel);
-        // TODO: create trackingID
+
         String trackingId = null;
         try {
             trackingId = generateTrackingId();
@@ -59,9 +59,10 @@ public class ParcelServiceImpl implements ParcelService {
 
     @Override
     public TrackingInformation trackParcel(String trackingId) throws SQLException {
+        validator.validate(trackingId);
         ParcelEntity parcelEntity = parcelRepository.findByTrackingId(trackingId);
         if (parcelEntity == null) {
-            log.error("ölaksde");
+            log.warn("returned parcelEntity from DB while tracking parcel is null");
             return null;
         }
 
