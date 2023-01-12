@@ -3,6 +3,7 @@ package at.fhtw.swen3.services.mapper;
 import at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity;
 import at.fhtw.swen3.services.dto.WarehouseNextHops;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 
 @RequiredArgsConstructor
 public class WarehouseNextHopsMapper extends AbstractMapper<WarehouseNextHopsEntity, WarehouseNextHops>{

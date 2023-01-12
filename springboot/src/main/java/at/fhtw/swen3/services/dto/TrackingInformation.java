@@ -24,6 +24,8 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
 @Builder
 public class TrackingInformation {
+  //@Autowired
+  //private KafkaProducerController kafkaProducerController;
 
   /**
    * State of the parcel.
@@ -94,6 +96,9 @@ public class TrackingInformation {
 
   public void setState(StateEnum state) {
     this.state = state;
+    //kafka send message when state of parcel changes
+      //latest: kafkaProducerController.getStateChange(state);
+    //kafkaTemplate.send("stateTrackingInformation", state);
   }
 
   public TrackingInformation visitedHops(List<HopArrival> visitedHops) {

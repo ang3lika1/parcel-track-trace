@@ -4,6 +4,7 @@ import at.fhtw.swen3.persistence.entities.EntityValidator;
 import at.fhtw.swen3.persistence.repositories.*;
 import at.fhtw.swen3.services.*;
 import at.fhtw.swen3.services.impl.*;
+import at.fhtw.swen3.services.kafka.KafkaProducerController;
 import at.fhtw.swen3.services.mapper.*;
 import at.fhtw.swen3.services.validation.Validator;
 import org.springframework.context.annotation.Bean;
@@ -23,8 +24,8 @@ public class SpringConfig {
     }
 
     @Bean
-    public ParcelService getParcelService(ParcelMapper parcelMapper, Validator validator, ParcelRepository parcelRepository) {
-        return new ParcelServiceImpl(parcelMapper, validator, parcelRepository);
+    public ParcelService getParcelService(ParcelMapper parcelMapper, Validator validator, ParcelRepository parcelRepository, KafkaProducerController kafkaProducerController) {
+        return new ParcelServiceImpl(parcelMapper, validator, parcelRepository, kafkaProducerController);
     }
 
     @Bean
@@ -69,6 +70,7 @@ public class SpringConfig {
         return new HopServiceImpl(validator, hopMapper, hopRepository) {
         };
     }
+    
     @Bean
     public HopMapper getHopMapper(GeoCoordinateMapper geoCoordinateMapper) {
         return new HopMapper(geoCoordinateMapper);
@@ -102,6 +104,11 @@ public class SpringConfig {
     @Bean
     public ResetService getResetService(GeoCoordinateRepository geoCoordinateRepository, HopArrivalRepository hopArrivalRepository, HopRepository hopRepository, ParcelRepository parcelRepository, RecipientRepository recipientRepository, WarehouseNextHopsRepository warehouseNextHopsRepository){
         return new ResetServiceImpl(geoCoordinateRepository, hopArrivalRepository, hopRepository, parcelRepository, recipientRepository, warehouseNextHopsRepository);
+    }
+
+    @Bean
+    public TransferwarehouseMapper getTransferwarehouseMapper(GeoCoordinateMapper geoCoordinateMapper) {
+        return new TransferwarehouseMapper(geoCoordinateMapper);
     }
 
 }

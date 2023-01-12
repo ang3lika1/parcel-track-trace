@@ -1,9 +1,7 @@
 package at.fhtw.swen3.services.impl;
 
 import at.fhtw.swen3.controller.rest.ParcelApiController;
-import at.fhtw.swen3.persistence.entities.HopArrivalEntity;
-import at.fhtw.swen3.persistence.entities.ParcelEntity;
-import at.fhtw.swen3.persistence.entities.RecipientEntity;
+import at.fhtw.swen3.persistence.entities.*;
 import at.fhtw.swen3.persistence.repositories.ParcelRepository;
 import at.fhtw.swen3.services.ParcelService;
 import at.fhtw.swen3.services.dto.Parcel;
@@ -91,6 +89,8 @@ class ParcelApiControllerTest {
 
     @Test
     void submitParcel() {
+        parcelApiController.transitionParcel(parcelEntity.getTrackingId(),parcelMapper.toParcelDto(parcelEntity));
+
         parcelApiController.submitParcel(parcel);
     }
 

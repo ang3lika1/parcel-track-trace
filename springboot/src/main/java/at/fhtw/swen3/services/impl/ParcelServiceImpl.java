@@ -4,6 +4,7 @@ import at.fhtw.swen3.persistence.entities.HopArrivalEntity;
 import at.fhtw.swen3.persistence.entities.HopEntity;
 import at.fhtw.swen3.persistence.entities.ParcelEntity;
 import at.fhtw.swen3.persistence.repositories.ParcelRepository;
+import at.fhtw.swen3.services.kafka.KafkaProducerController;
 import at.fhtw.swen3.services.ParcelService;
 import at.fhtw.swen3.services.dto.NewParcelInfo;
 import at.fhtw.swen3.services.dto.Parcel;
@@ -25,6 +26,11 @@ public class ParcelServiceImpl implements ParcelService {
     private final ParcelMapper parcelMapper;
     private final Validator validator;
     private final ParcelRepository parcelRepository;
+
+    //for kafka notification:
+    private final KafkaProducerController kafkaProducerController;
+    //private final Environment env;
+
 
     private String generateTrackingId() throws SQLException {
         String newId;
@@ -49,6 +55,12 @@ public class ParcelServiceImpl implements ParcelService {
         NewParcelInfo newParcelInfo = NewParcelInfo.builder().trackingId(trackingId).build();
         TrackingInformation trackingInformation = TrackingInformation.builder().build();
         trackingInformation.setState(TrackingInformation.StateEnum.PICKUP);
+
+        try {
+            send(trackingInformation);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
 
         ParcelEntity parcelEntity = parcelMapper.from(parcel, newParcelInfo, trackingInformation);
 
@@ -75,6 +87,7 @@ public class ParcelServiceImpl implements ParcelService {
 
     @Override
     public ParcelEntity reportParcelDelivery(String trackingId) throws SQLException {
+        validator.validate(trackingId);
         ParcelEntity parcelEntity = parcelRepository.findByTrackingId(trackingId);
         if(parcelEntity == null) return null;
 
@@ -99,6 +112,27 @@ public class ParcelServiceImpl implements ParcelService {
                 break;
 
             case "TransferWarehouse":
+                /*TransferwarehouseEntity transferwarehouseEntity = (TransferwarehouseEntity) hop;
+                URL url = null;
+                try {
+                    url = new URL(transferwarehouseEntity.getLogisticsPartnerUrl());
+                    String trackingId = parcel.getTrackingId();
+
+                    URLConnection conn = url.openConnection();
+
+                    conn.setDoOutput(true);
+                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
+                    conn.setRequestProperty("Content-Length", Integer.toString(trackingId.length()));
+                    try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
+                        dos.writeBytes(trackingId);
+                        System.out.println(dos);
+                    }
+                } catch (IOException e) {
+                    log.error(e.getMessage());
+                }*/
+
+
                 //TODO: call logistics partner and transfer parcel
                 parcel.setDeliveryStatus(TrackingInformation.StateEnum.TRANSFERRED);
                 break;
@@ -126,6 +160,14 @@ public class ParcelServiceImpl implements ParcelService {
 
         parcelRepository.save(parcelEntity);
         return new ResponseEntity<>(newParcelInfo, HttpStatus.OK);
+    }
+
+    @Override
+    public void send(TrackingInformation state) throws Exception {
+        System.out.println("ParcelServiceImpl ----------------------------------------");
+        //kafkaProducerController.getStateChange(env.getProperty("producer.kafka.topic-name"), TrackingInformation.StateEnum.valueOf(toJson(state)));
+        //kafkaProducerController.getStateChange("stateTrackingInformation", state);
+        kafkaProducerController.produce(state);
     }
 
 }
