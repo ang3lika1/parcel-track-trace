@@ -92,6 +92,14 @@ public class ParcelServiceImpl implements ParcelService {
         if(parcelEntity == null) return null;
 
         parcelEntity.setDeliveryStatus(TrackingInformation.StateEnum.DELIVERED);
+
+        TrackingInformation trackingInformation = parcelMapper.toTrackingInfoDto(parcelEntity);
+        try {
+            send(trackingInformation);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+
         ParcelEntity updatedParcel = parcelRepository.save(parcelEntity);
         log.info(String.valueOf(updatedParcel));
         System.out.println(updatedParcel);
@@ -137,7 +145,12 @@ public class ParcelServiceImpl implements ParcelService {
                 parcel.setDeliveryStatus(TrackingInformation.StateEnum.TRANSFERRED);
                 break;
         }
-
+        TrackingInformation trackingInformation = parcelMapper.toTrackingInfoDto(parcel);
+        try {
+            send(trackingInformation);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
         parcelRepository.save(parcel);
     }
 
