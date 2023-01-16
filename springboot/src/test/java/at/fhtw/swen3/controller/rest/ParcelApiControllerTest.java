@@ -1,11 +1,10 @@
-package at.fhtw.swen3.services.impl;
+package at.fhtw.swen3.controller.rest;
 
 import at.fhtw.swen3.controller.rest.ParcelApiController;
-import at.fhtw.swen3.persistence.entities.HopArrivalEntity;
-import at.fhtw.swen3.persistence.entities.ParcelEntity;
-import at.fhtw.swen3.persistence.entities.RecipientEntity;
+import at.fhtw.swen3.persistence.entities.*;
 import at.fhtw.swen3.persistence.repositories.ParcelRepository;
 import at.fhtw.swen3.services.ParcelService;
+import at.fhtw.swen3.services.dto.NewParcelInfo;
 import at.fhtw.swen3.services.dto.Parcel;
 import at.fhtw.swen3.services.dto.Recipient;
 import at.fhtw.swen3.services.dto.TrackingInformation;
@@ -74,7 +73,6 @@ class ParcelApiControllerTest {
 
     @Test
     void reportParcelDelivery() {
-        //parcelRepository.save(parcelEntity);
         parcelApiController.transitionParcel(parcelEntity.getTrackingId(),parcelMapper.toParcelDto(parcelEntity));
         ResponseEntity<Void> delivery = parcelApiController.reportParcelDelivery(parcelEntity.getTrackingId());
         assertEquals(new ResponseEntity<>( HttpStatus.CREATED), delivery);
@@ -85,27 +83,30 @@ class ParcelApiControllerTest {
         }
     }
 
-    @Test
-    void reportParcelHop() {
-    }
 
     @Test
     void submitParcel() {
-        parcelApiController.submitParcel(parcel);
+        ResponseEntity<NewParcelInfo> testResponse = parcelApiController.submitParcel(parcel);
+        //System.out.println(testResponse);
+        assertEquals(testResponse, new ResponseEntity<NewParcelInfo>(NewParcelInfo.builder().trackingId(testResponse.getBody().getTrackingId()).build(), HttpStatus.CREATED));
+
     }
 
     @Test
     void trackParcel() {
         ParcelEntity parcelForTracking = parcelRepository.save(parcelEntity);
         ResponseEntity<TrackingInformation> trackParcel = parcelApiController.trackParcel(parcelForTracking.getTrackingId());
-        System.out.println(trackParcel);
+        //System.out.println(trackParcel);
+        assertEquals(trackParcel, new ResponseEntity<TrackingInformation>(parcelMapper.toTrackingInfoDto(parcelEntity),HttpStatus.OK));
+
     }
 
     @Test
     void transitionParcel() {
+        ResponseEntity<NewParcelInfo> transitionParcel = parcelApiController.transitionParcel(parcelEntity.getTrackingId(),parcelMapper.toParcelDto(parcelEntity));
+        //System.out.println(transitionParcel);
+        assertEquals(transitionParcel, new ResponseEntity<NewParcelInfo>(parcelMapper.toParcelInfoDto(parcelEntity),HttpStatus.OK));
+
     }
 
-    @Test
-    void getRequest() {
-    }
 }

@@ -24,4 +24,5 @@ public interface ParcelService {
 
     public ResponseEntity<NewParcelInfo> saveExistingParcel(String trackingId, Parcel parcel) throws SQLException;
 
+    void send(TrackingInformation state) throws Exception;
 }
