@@ -33,7 +33,6 @@ public class SpringConfig {
         return new ParcelMapperImpl();
     }
 
-
     @Bean
     public RecipientService getRecipientService(RecipientMapper recipientMapper, Validator validator, RecipientRepository recipientRepository) {
         return new RecipientServiceImpl(recipientMapper, validator, recipientRepository);
@@ -54,6 +53,7 @@ public class SpringConfig {
     public HopArrivalMapper getHopArrivalMapper() {
         return new HopArrivalMapper();
     }
+
     @Bean
     public GeoCoordinateService getGeoCoordinateService(GeoCoordinateMapper geoCoordinateMapper, Validator validator, GeoCoordinateRepository geoCoordinateRepository) {
         return new GeoCoordinateServiceImpl(validator, geoCoordinateMapper, geoCoordinateRepository) {
@@ -66,15 +66,21 @@ public class SpringConfig {
     }
 
     @Bean
+    public WarehouseNextHopsMapper getWareHouseNextHopsMapper() {
+        return new WarehouseNextHopsMapper();
+    }
+
+    @Bean
+    public HopMapper getHopMapper(GeoCoordinateMapper geoCoordinateMapper, WarehouseNextHopsMapper warehouseNextHopsMapper) {
+        return new HopMapper(geoCoordinateMapper, warehouseNextHopsMapper);
+    }
+
+    @Bean
     public HopService getHopService(HopMapper hopMapper, Validator validator, HopRepository hopRepository) {
         return new HopServiceImpl(validator, hopMapper, hopRepository) {
         };
     }
-    
-    @Bean
-    public HopMapper getHopMapper(GeoCoordinateMapper geoCoordinateMapper) {
-        return new HopMapper(geoCoordinateMapper);
-    }
+
 
     @Bean
     public TruckService getTruckService(TruckMapper truckMapper, Validator validator, TruckRepository truckRepository) {
@@ -87,18 +93,13 @@ public class SpringConfig {
     }
 
     @Bean
-    public WarehouseNextHopsMapper getWareHouseNextHopsMapper(HopMapper hopMapper) {
-        return new WarehouseNextHopsMapper(hopMapper);
-    }
-
-    @Bean
     public WarehouseService getWarehouseService(WarehouseMapper warehouseMapper, Validator validator, WarehouseRepository warehouseRepository, WarehouseNextHopsRepository warehouseNextHopsRepository, ResetService resetService) {
         return new WarehouseServiceImpl(warehouseMapper, validator, warehouseRepository, warehouseNextHopsRepository, resetService) {
         };
     }
     @Bean
-    public WarehouseMapper getWarehouseMapper(WarehouseNextHopsMapper warehouseNextHopsMapper, GeoCoordinateMapper geoCoordinateMapper) {
-        return new WarehouseMapper(warehouseNextHopsMapper, geoCoordinateMapper);
+    public WarehouseMapper getWarehouseMapper() {
+        return new WarehouseMapper();
     }
 
     @Bean

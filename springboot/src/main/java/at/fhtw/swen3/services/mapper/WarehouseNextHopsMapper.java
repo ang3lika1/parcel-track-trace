@@ -1,26 +1,27 @@
 package at.fhtw.swen3.services.mapper;
 
+import at.fhtw.swen3.persistence.entities.HopEntity;
 import at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity;
+import at.fhtw.swen3.services.dto.Hop;
 import at.fhtw.swen3.services.dto.WarehouseNextHops;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 
 @RequiredArgsConstructor
-public class WarehouseNextHopsMapper extends AbstractMapper<WarehouseNextHopsEntity, WarehouseNextHops>{
-    private final HopMapper hopMapper;
-    @Override
-    public WarehouseNextHops mapToTarget(WarehouseNextHopsEntity entity) {
+public class WarehouseNextHopsMapper {
+
+
+    public WarehouseNextHops mapToTarget(WarehouseNextHopsEntity entity, Hop hop) {
         return WarehouseNextHops.builder()
                 .traveltimeMins(entity.getTraveltimeMins())
-                .hop(hopMapper.mapToTarget(entity.getHop()))
+                .hop(hop)
                 .build();
     }
 
-    @Override
-    public WarehouseNextHopsEntity mapToSource(WarehouseNextHops dto) {
+    public WarehouseNextHopsEntity mapToSource(WarehouseNextHops dto, HopEntity hop) {
         return WarehouseNextHopsEntity.builder()
                 .traveltimeMins(dto.getTraveltimeMins())
-                .hop(hopMapper.mapToSource(dto.getHop()))
+                .hop(hop)
                 .build();
     }
 }
