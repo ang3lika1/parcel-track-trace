@@ -13,7 +13,7 @@ import java.util.List;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class WarehouseEntity extends HopEntity{
+public class WarehouseEntity extends HopEntity {
     @Column
     private Integer level;
 
