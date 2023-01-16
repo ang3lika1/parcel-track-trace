@@ -5,6 +5,7 @@ import at.fhtw.swen3.persistence.entities.WarehouseNextHopsEntity;
 import at.fhtw.swen3.services.dto.Hop;
 import at.fhtw.swen3.services.dto.WarehouseNextHops;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 
 @RequiredArgsConstructor
 public class WarehouseNextHopsMapper {
