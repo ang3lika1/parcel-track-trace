@@ -177,9 +177,7 @@ public class ParcelServiceImpl implements ParcelService {
 
     @Override
     public void send(TrackingInformation state) throws Exception {
-        System.out.println("ParcelServiceImpl ----------------------------------------");
-        //kafkaProducerController.getStateChange(env.getProperty("producer.kafka.topic-name"), TrackingInformation.StateEnum.valueOf(toJson(state)));
-        //kafkaProducerController.getStateChange("stateTrackingInformation", state);
+        log.info("ParcelServiceImpl method send() called - kafka");
         kafkaProducerController.produce(state);
     }
 
