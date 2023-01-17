@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "testing_env_url",
+      "type": "java.lang.String",
+      "description": "Description for testing_env_url."
+    }
+  ] }

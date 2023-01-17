@@ -52,30 +52,30 @@ class WarehouseApiControllerTest {
         GeoCoordinate nextHopGC = GeoCoordinate.builder().lat(7582346d).lon(285d).build();
         Point point1 = Point.fromLngLat(nextHopGC.getLon(), nextHopGC.getLat());
 
-        Truck hop1 = Truck.builder()
-                .regionGeoJson(String.valueOf(point1))
-                .hopType("truck")
-                .code("ABCD12")
-                .description("next hop 1 of warehouse")
-                .processingDelayMins(200)
-                .locationName("Wien")
-                .numberPlate("W-747200")
-                .locationCoordinates(nextHopGC).build();
+        Truck hop1 = new Truck(
+                "truck",
+                "ABCD12",
+                "next hop 1 of warehouse",
+                200,
+                "Wien",
+                nextHopGC,
+                String.valueOf(point1),
+                "W-747200");
 
         WarehouseNextHops nextHop1 = WarehouseNextHops.builder()
                 .hop(hop1)
                 .traveltimeMins(400)
                 .build();
 
-        Truck hop2 = Truck.builder()
-                .regionGeoJson(String.valueOf(point1))
-                .hopType("truck")
-                .code("EFGH34")
-                .description("next hop 2 of warehouse")
-                .processingDelayMins(56)
-                .locationName("Tulln")
-                .numberPlate("TU-20056")
-                .locationCoordinates(nextHopGC).build();
+        Truck hop2 = new Truck(
+                "truck",
+                "EFGH34",
+                "next hop 2 of warehouse",
+                56,
+                "Tulln",
+                nextHopGC,
+                String.valueOf(point1),
+                "TU-20056");
 
         WarehouseNextHops nextHop2 = WarehouseNextHops.builder()
                 .hop(hop2)
@@ -84,19 +84,17 @@ class WarehouseApiControllerTest {
 
         List<WarehouseNextHops> nextHops = Arrays.asList(nextHop1, nextHop2);
 
-
         GeoCoordinate warehouseGC = GeoCoordinate.builder().lat(3493582346d).lon(345d).build();
-        Warehouse warehouse = Warehouse.builder()
-                //attributes from superclass hop:
-                .hopType("warehouse")
-                .code("ABCD12")
-                .description("test description")
-                .processingDelayMins(55)
-                .locationName("Wien")
-                .locationCoordinates(warehouseGC)
-                .level(2)
-                .nextHops(nextHops)
-                .build();
+
+        Warehouse warehouse = new Warehouse(
+                "warehouse",
+                "ABCD12",
+                "test description",
+                55,
+                "Wien",
+                warehouseGC,
+                2,
+                nextHops);
 
         ResponseEntity<Void> importedWarehouse = warehouseApiController.importWarehouses(warehouse);
         assertEquals(importedWarehouse, new ResponseEntity<>( HttpStatus.OK));
