@@ -1,54 +1,34 @@
-package at.fhtw.swen3.controller.rest;
+package at.fhtw.swen3.services.mapper;
 
-import at.fhtw.swen3.persistence.repositories.WarehouseNextHopsRepository;
-import at.fhtw.swen3.services.dto.*;
+import at.fhtw.swen3.persistence.entities.WarehouseEntity;
+import at.fhtw.swen3.services.dto.GeoCoordinate;
+import at.fhtw.swen3.services.dto.Truck;
+import at.fhtw.swen3.services.dto.Warehouse;
+import at.fhtw.swen3.services.dto.WarehouseNextHops;
 import com.mapbox.geojson.Point;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.annotation.Commit;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Slf4j
-@Transactional
-class WarehouseApiControllerTest {
+class HopMapperTest {
 
     @Autowired
-    WarehouseApiController warehouseApiController;
-
-    @Autowired
-    WarehouseNextHopsRepository warehouseNextHopsRepository;
-
+    private HopMapper hopMapper;
 
     @Test
-    void getRequest() {
+    void mapToTarget() {
     }
 
     @Test
-    void exportWarehouses() {
-        ResponseEntity<Warehouse> warehouseHierarchy = warehouseApiController.exportWarehouses();
-        log.info(String.valueOf(warehouseHierarchy));
-    }
-
-    @Test
-    void getWarehouse() {
-        ResponseEntity<Hop> warehouse = warehouseApiController.getWarehouse("abdsa");
-        assertEquals(warehouse, new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
-    }
-
-
-    @Test
-    void importWarehouses() {
+    void mapToSource() {
         GeoCoordinate nextHopGC = GeoCoordinate.builder().lat(7582346d).lon(285d).build();
         Point point1 = Point.fromLngLat(nextHopGC.getLon(), nextHopGC.getLat());
 
@@ -96,7 +76,12 @@ class WarehouseApiControllerTest {
                 2,
                 nextHops);
 
-        ResponseEntity<Void> importedWarehouse = warehouseApiController.importWarehouses(warehouse);
-        assertEquals(importedWarehouse, new ResponseEntity<>( HttpStatus.OK));
+        WarehouseEntity entity = (WarehouseEntity) hopMapper.mapToSource(warehouse);
+
+        log.warn(entity.toString());
+    }
+
+    @Test
+    void testMapToSource() {
     }
 }

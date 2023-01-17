@@ -2,6 +2,7 @@ package at.fhtw.swen3.services.dto;
 
 import java.util.Objects;
 
+import at.fhtw.swen3.persistence.entities.TruckEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -20,7 +21,6 @@ import javax.annotation.Generated;
 
 
 @JsonTypeName("truck")
-@SuperBuilder
 //@Builder
 //@EqualsAndHashCode(callSuper = true)
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
@@ -32,6 +32,11 @@ public class Truck extends Hop {
   @JsonProperty("numberPlate")
   private String numberPlate;
 
+  public Truck(String hopType, String code, String description, Integer processingDelayMins, String locationName, GeoCoordinate locationCoordinates, String regionGeoJson, String numberPlate) {
+    super(hopType, code, description, processingDelayMins, locationName, locationCoordinates);
+    this.regionGeoJson = regionGeoJson;
+    this.numberPlate = numberPlate;
+  }
 
   public Truck regionGeoJson(String regionGeoJson) {
     this.regionGeoJson = regionGeoJson;

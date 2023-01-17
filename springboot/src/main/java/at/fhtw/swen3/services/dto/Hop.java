@@ -32,9 +32,17 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = Warehouse.class, name = "warehouse")
 })
 @JsonTypeName("hop")
-@SuperBuilder
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
+
 public class Hop {
+  public Hop(String hopType, String code, String description, Integer processingDelayMins, String locationName, GeoCoordinate locationCoordinates) {
+    this.hopType = hopType;
+    this.code = code;
+    this.description = description;
+    this.processingDelayMins = processingDelayMins;
+    this.locationName = locationName;
+    this.locationCoordinates = locationCoordinates;
+  }
 
   @JsonProperty("hopType")
   private String hopType;
