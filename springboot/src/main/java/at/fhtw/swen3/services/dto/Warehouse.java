@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -22,8 +24,6 @@ import javax.annotation.Generated;
 
 
 @JsonTypeName("warehouse")
-@SuperBuilder
-//@Builder
 //@EqualsAndHashCode(callSuper = true)
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-09-22T13:39:57.022856Z[Etc/UTC]")
 public class Warehouse extends Hop {
@@ -34,6 +34,12 @@ public class Warehouse extends Hop {
   @JsonProperty("nextHops")
   @Valid
   private List<WarehouseNextHops> nextHops = new ArrayList<>();
+
+  public Warehouse(String hopType, String code, String description, Integer processingDelayMins, String locationName, GeoCoordinate locationCoordinates, Integer level, List<WarehouseNextHops> nextHops) {
+    super(hopType, code, description, processingDelayMins, locationName, locationCoordinates);
+    this.level = level;
+    this.nextHops = nextHops;
+  }
 
   public Warehouse level(Integer level) {
     this.level = level;

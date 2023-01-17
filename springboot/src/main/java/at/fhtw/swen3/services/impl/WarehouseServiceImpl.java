@@ -7,15 +7,19 @@ import at.fhtw.swen3.services.ResetService;
 import at.fhtw.swen3.services.WarehouseService;
 import at.fhtw.swen3.services.dto.Hop;
 import at.fhtw.swen3.services.dto.Warehouse;
+import at.fhtw.swen3.services.mapper.HopMapper;
 import at.fhtw.swen3.services.mapper.WarehouseMapper;
 import at.fhtw.swen3.services.validation.Validator;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.SQLException;
 
+@Slf4j
 @RequiredArgsConstructor
 public class WarehouseServiceImpl implements WarehouseService {
+    private final HopMapper hopMapper;
     private final WarehouseMapper warehouseMapper;
     private final Validator validator;
     private final WarehouseRepository warehouseRepository;
@@ -27,14 +31,14 @@ public class WarehouseServiceImpl implements WarehouseService {
     public Warehouse exportWarehouses() {
          WarehouseEntity warehouseEntityHierarchy = warehouseRepository.findFirstByIdIsNotNullOrderByNextHops();
          if(warehouseEntityHierarchy==null) return null;
-         return warehouseMapper.mapToTarget(warehouseEntityHierarchy);
+         return (Warehouse) hopMapper.mapToTarget(warehouseEntityHierarchy);
     }
 
     @Override
     public Hop getWarehouse(String code) throws SQLException {
         WarehouseEntity warehouseEntity = warehouseRepository.findByCode(code);
         if(warehouseEntity == null) return null;
-        return warehouseMapper.mapToTarget(warehouseEntity);
+        return hopMapper.mapToTarget(warehouseEntity);
     }
 
     @Override
@@ -45,7 +49,8 @@ public class WarehouseServiceImpl implements WarehouseService {
         //clear
         resetService.resetDB();
 
-        WarehouseEntity warehouseEntity = warehouseMapper.mapToSource(warehouse);
+        WarehouseEntity warehouseEntity = (WarehouseEntity) hopMapper.mapToSource(warehouse);
+        log.warn(warehouseEntity.toString());
         WarehouseEntity createdWarehouseEntity = warehouseRepository.save(warehouseEntity);
         warehouseNextHopsRepository.saveAll(warehouseEntity.getNextHops());
         return warehouseMapper.mapToTarget(createdWarehouseEntity);

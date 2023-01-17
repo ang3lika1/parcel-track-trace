@@ -40,16 +40,56 @@ public class HopMapper  extends AbstractMapper<HopEntity, Hop>{
                     nextHops.add(warehouseNextHopsMapper.mapToTarget(warehouseNextHop, hop));
                 }
 
-                return Warehouse.builder().code(entity.getCode()).description(entity.getDescription()).hopType(entity.getHopType()).locationName(entity.getLocationName()).processingDelayMins(entity.getProcessingDelayMins()).locationCoordinates(geoCoordinateMapper.mapToTarget(entity.getLocationCoordinates())).nextHops(nextHops).build();
+                return new Warehouse(
+                        entity.getHopType(),
+                        entity.getCode(),
+                        entity.getDescription(),
+                        entity.getProcessingDelayMins(),
+                        entity.getLocationName(),
+                        geoCoordinateMapper.mapToTarget(entity.getLocationCoordinates()),
+                        warehouseEntity.getLevel(),
+                        nextHops);
+
 
             case "Truck":
                 //return truckMapper.mapToTarget((TruckEntity) entity);
-                return Truck.builder().code(entity.getCode()).description(entity.getDescription()).hopType(entity.getHopType()).locationName(entity.getLocationName()).processingDelayMins(entity.getProcessingDelayMins()).locationCoordinates(geoCoordinateMapper.mapToTarget(entity.getLocationCoordinates())).regionGeoJson(((TruckEntity) entity).getRegionGeoJson()).numberPlate(((TruckEntity) entity).getNumberPlate()).build();
+                return new Truck(
+                        entity.getHopType(),
+                        entity.getCode(),
+                        entity.getDescription(),
+                        entity.getProcessingDelayMins(),
+                        entity.getLocationName(),
+                        geoCoordinateMapper.mapToTarget(entity.getLocationCoordinates()),
+                        ((TruckEntity) entity).getRegionGeoJson(),
+                        ((TruckEntity) entity).getNumberPlate());
+               // return Truck.builder().code(entity.getCode()).description(entity.getDescription()).hopType(entity.getHopType()).locationName(entity.getLocationName()).processingDelayMins(entity.getProcessingDelayMins()).locationCoordinates(geoCoordinateMapper.mapToTarget(entity.getLocationCoordinates())).regionGeoJson(((TruckEntity) entity).getRegionGeoJson()).numberPlate(((TruckEntity) entity).getNumberPlate()).build();
             case "TransferWarehouse":
                 //return transferwarehouseMapper.mapToTarget((TransferwarehouseEntity) entity);
-                return Transferwarehouse.builder().code(entity.getCode()).description(entity.getDescription()).hopType(entity.getHopType()).locationName(entity.getLocationName()).processingDelayMins(entity.getProcessingDelayMins()).locationCoordinates(geoCoordinateMapper.mapToTarget(entity.getLocationCoordinates())).regionGeoJson(((TransferwarehouseEntity) entity).getRegionGeoJson()).logisticsPartner(((TransferwarehouseEntity) entity).getLogisticsPartner()).logisticsPartnerUrl(((TransferwarehouseEntity) entity).getLogisticsPartnerUrl()).build();
+                return new Transferwarehouse(
+                        entity.getHopType(),
+                        entity.getCode(),
+                        entity.getDescription(),
+                        entity.getProcessingDelayMins(),
+                        entity.getLocationName(),
+                        geoCoordinateMapper.mapToTarget(entity.getLocationCoordinates()),
+                        ((TransferwarehouseEntity) entity).getRegionGeoJson(),
+                        ((TransferwarehouseEntity) entity).getLogisticsPartner(),
+                        ((TransferwarehouseEntity) entity).getLogisticsPartnerUrl()
+                );
+                //return Transferwarehouse.builder().code(entity.getCode()).description(entity.getDescription()).hopType(entity.getHopType()).locationName(entity.getLocationName()).processingDelayMins(entity.getProcessingDelayMins()).locationCoordinates(geoCoordinateMapper.mapToTarget(entity.getLocationCoordinates())).regionGeoJson(((TransferwarehouseEntity) entity).getRegionGeoJson()).logisticsPartner(((TransferwarehouseEntity) entity).getLogisticsPartner()).logisticsPartnerUrl(((TransferwarehouseEntity) entity).getLogisticsPartnerUrl()).build();
         }
-        return Hop.builder().code(entity.getCode()).description(entity.getDescription()).hopType(entity.getHopType()).locationName(entity.getLocationName()).processingDelayMins(entity.getProcessingDelayMins()).locationCoordinates(geoCoordinateMapper.mapToTarget(entity.getLocationCoordinates())).build();
+
+        return new Hop(
+                entity.getHopType(),
+                entity.getCode(),
+                entity.getDescription(),
+                entity.getProcessingDelayMins(),
+                entity.getLocationName(),
+                geoCoordinateMapper.mapToTarget(entity.getLocationCoordinates())
+        );
+
+
+       // return Hop.builder().code(entity.getCode()).description(entity.getDescription()).hopType(entity.getHopType()).locationName(entity.getLocationName()).processingDelayMins(entity.getProcessingDelayMins()).locationCoordinates(geoCoordinateMapper.mapToTarget(entity.getLocationCoordinates())).build();
     }
 
     @Override
