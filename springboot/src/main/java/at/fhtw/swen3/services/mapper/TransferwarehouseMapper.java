@@ -12,17 +12,7 @@ public class TransferwarehouseMapper extends AbstractMapper<TransferwarehouseEnt
 
     @Override
     public Transferwarehouse mapToTarget(TransferwarehouseEntity entity) {
-        return Transferwarehouse.builder()
-                .regionGeoJson(entity.getRegionGeoJson())
-                .logisticsPartner(entity.getLogisticsPartner())
-                .logisticsPartnerUrl(entity.getLogisticsPartnerUrl())
-                .hopType(entity.getHopType())
-                .code(entity.getCode())
-                .description(entity.getDescription())
-                .processingDelayMins(entity.getProcessingDelayMins())
-                .locationName(entity.getLocationName())
-                .locationCoordinates(geoCoordinateMapper.mapToTarget(entity.getLocationCoordinates()))
-                .build();
+        return null;
     }
 
     @Override
